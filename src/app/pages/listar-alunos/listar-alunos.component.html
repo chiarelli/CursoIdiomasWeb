@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <strong>Alunos</strong>
+    <button class="btn btn-sm btn-primary">Novo Aluno</button>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table table-striped mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Email</th>
+          <th class="text-end">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let aluno of paginate.content">
+          <td>{{ aluno.nome }}</td>
+          <td>{{ aluno.cpf | cpfMask }}</td>
+          <td>{{ aluno.email }}</td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-warning me-2">
+              Editar
+            </button>
+            <button class="btn btn-sm btn-danger">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <button class="btn btn-outline-secondary btn-sm" (click)="paginaAnterior()" [disabled]="paginate.page <= 1">Anterior</button>
+    <span>Página {{ paginate.page }} de {{ paginate.total_pages }}</span>
+    <button class="btn btn-outline-secondary btn-sm" (click)="proximaPagina()" [disabled]="paginate.page >= paginate.total_pages">Próxima</button>
+  </div>
+</div>
