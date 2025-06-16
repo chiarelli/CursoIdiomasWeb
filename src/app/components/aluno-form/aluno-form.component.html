@@ -40,7 +40,7 @@
         <div class="mb-3">
           <label for="turmas" class="form-label">Turmas</label>
           <select class="form-select" id="turmas" formControlName="turma_matricular_ids" multiple>
-            <option *ngFor="let turma of turmas.content" [value]="turma.id">
+            <option *ngFor="let turma of turmas" [value]="turma.id">
               Número: {{ turma.numero_turma }} | Ano: {{ turma.ano_letivo }}
             </option>
           </select>

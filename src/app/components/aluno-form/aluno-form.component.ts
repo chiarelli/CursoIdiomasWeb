@@ -4,12 +4,11 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { NgxMaskDirective } from 'ngx-mask';
 import { AlunoResponse } from 'src/app/dtos/aluno-response';
 import { CadastrarAluno } from 'src/app/dtos/cadastrar-aluno';
+import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
 import { Turma } from 'src/app/dtos/turma';
 import { cpfValidator } from 'src/app/validators/cpf-validator';
 import { minSelectedItems } from 'src/app/validators/min-selected-items';
-import { PaginatedResponse } from './../../dtos/pagination-response';
 import { AlunoFeedbackComponent } from "../aluno-feedback/aluno-feedback.component";
-import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
 
 @Component({
   selector: 'app-aluno-form',
@@ -26,7 +25,7 @@ import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
 export class AlunoFormComponent implements OnInit {
   @Input() resetTrigger: boolean = false;
   @Input() initialData?: AlunoResponse;
-  @Input() turmas = new PaginatedResponse<Turma>(0, 0, 0, 0, 0, []);
+  @Input() turmas: Turma[] = [];
   @Input() apiErrors!: ErrosAPIResponse;
   @Input() successMsg!: string;
   
