@@ -33,6 +33,7 @@ export const appConfig: ApplicationConfig = {
     IconSetService,
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideNgxMask()
+    provideNgxMask(),
+    provideAnimationsAsync()
   ]
 };
