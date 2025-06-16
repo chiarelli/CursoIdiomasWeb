@@ -1,0 +1,100 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <strong>Cadastrar Aluno</strong>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="CadastrarAlunoSubmit()">
+        <!-- Nome -->
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome" />
+
+          <div *ngIf="form.get('nome')?.touched">
+            <small *ngIf="form.get('nome')?.hasError('required')" class="text-danger">
+              Nome é obrigatório
+            </small>
+
+            <small *ngIf="form.get('nome')?.hasError('minlength')" class="text-danger">
+              Nome deve ter pelo menos 3 caracteres
+            </small>
+          </div>
+
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" formControlName="email" />
+
+          <div *ngIf="form.get('email')?.touched">
+            <small *ngIf="form.get('email')?.hasError('required')" class="text-danger">
+              E-mail é obrigatório
+            </small>
+            <small *ngIf="form.get('email')?.hasError('email')" class="text-danger">
+              E-mail inválido
+            </small>
+          </div>
+
+        </div>
+
+        <!-- CPF -->
+        <div class="mb-3">
+          <label for="cpf" class="form-label">CPF</label>
+          <input
+            formControlName="cpf"
+            type="text"
+            class="form-control"
+            mask="000.000.000-00"
+            placeholder="CPF"
+          />
+          
+          <div *ngIf="form.get('cpf')?.touched">
+            <small *ngIf="form.get('cpf')?.hasError('required')" class="text-danger">
+              CPF é obrigatório
+            </small>
+            <small *ngIf="form.get('cpf')?.hasError('cpfInvalido')" class="text-danger">
+              CPF inválido
+            </small>
+          </div>
+
+        </div>
+
+        <!-- Turmas (multi-select opcional) -->
+        <div class="mb-3">
+          <label for="turmas" class="form-label">Turmas</label>
+          <select class="form-select" id="turmas" formControlName="turma_matricular_ids" multiple>
+            <!-- Supondo que você tenha uma lista de turmas carregada -->
+            <option *ngFor="let turma of turmas.content" [value]="turma.id">
+              Número: {{ turma.numero_turma }} | Ano: ({{ turma.ano_letivo }})
+            </option>
+          </select>
+
+          <div *ngIf="form.get('turma_matricular_ids')?.touched">
+            <small *ngIf="form.get('turma_matricular_ids')?.hasError('minSelected')" class="text-danger">
+              Selecione pelo menos uma turma
+            </small>
+          </div>
+        </div>
+
+        <!-- Botão -->
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+          Cadastrar
+        </button>
+      </form>
+
+      <!-- Feedback do aluno criado -->
+      <div *ngIf="alunoCriado?.id" class="alert alert-success mt-3">
+        Aluno {{ alunoCriado.nome }} cadastrado com sucesso!
+      </div>
+
+      <div *ngIf="apiErrors.hasError()" class="alert alert-danger mt-3">
+        <ul>
+          <ul *ngFor="let error of apiErrors.getErrors()"><strong>{{ error[0] }}:</strong> {{ error[1] }}</ul>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+

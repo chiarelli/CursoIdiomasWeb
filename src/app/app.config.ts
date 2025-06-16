@@ -13,6 +13,7 @@ import { DropdownModule, SidebarModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { provideNgxMask } from 'ngx-mask';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,5 +33,6 @@ export const appConfig: ApplicationConfig = {
     IconSetService,
     provideAnimationsAsync(),
     provideHttpClient(),
+    provideNgxMask()
   ]
 };
