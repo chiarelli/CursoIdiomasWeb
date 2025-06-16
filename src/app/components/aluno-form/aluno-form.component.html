@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <strong>{{ initialData ? 'Editar Aluno' : 'Cadastrar Aluno' }}</strong>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <!-- Nome -->
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome" />
+          <div *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid">
+            <small *ngIf="form.get('nome')?.hasError('required')" class="text-danger">Nome é obrigatório</small>
+            <small *ngIf="form.get('nome')?.hasError('minlength')" class="text-danger">Mínimo 3 caracteres</small>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" formControlName="email" />
+          <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+            <small *ngIf="form.get('email')?.hasError('required')" class="text-danger">E-mail é obrigatório</small>
+            <small *ngIf="form.get('email')?.hasError('email')" class="text-danger">E-mail inválido</small>
+          </div>
+        </div>
+
+        <!-- CPF -->
+        <div class="mb-3">
+          <label for="cpf" class="form-label">CPF</label>
+          <input type="text" class="form-control" id="cpf" formControlName="cpf" mask="000.000.000-00" placeholder="CPF" />
+          <div *ngIf="form.get('cpf')?.touched && form.get('cpf')?.invalid">
+            <small *ngIf="form.get('cpf')?.hasError('required')" class="text-danger">CPF é obrigatório</small>
+            <small *ngIf="form.get('cpf')?.hasError('cpfInvalido')" class="text-danger">CPF inválido</small>
+          </div>
+        </div>
+
+        <!-- Turmas -->
+        <div class="mb-3">
+          <label for="turmas" class="form-label">Turmas</label>
+          <select class="form-select" id="turmas" formControlName="turma_matricular_ids" multiple>
+            <option *ngFor="let turma of turmas.content" [value]="turma.id">
+              Número: {{ turma.numero_turma }} | Ano: {{ turma.ano_letivo }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Botão -->
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          {{ initialData ? 'Salvar Alterações' : 'Cadastrar' }}
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
