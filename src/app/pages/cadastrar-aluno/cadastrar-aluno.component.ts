@@ -1,14 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlunoFormComponent } from 'src/app/components/aluno-form/aluno-form.component';
 import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
 import { ErrosAPI } from 'src/app/interfaces';
-import { minSelectedItems } from 'src/app/validators/min-selected-items';
 import { CadastrarAluno } from '../../dtos/cadastrar-aluno';
 import { PaginatedResponse } from '../../dtos/pagination-response';
 import { TurmasService } from '../../services/turmas.service';
-import { cpfValidator } from '../../validators/cpf-validator';
 import { AlunoResponse } from './../../dtos/aluno-response';
 import { Turma } from './../../dtos/turma';
 import { AlunosService } from './../../services/alunos.service';
@@ -17,9 +14,7 @@ import { AlunosService } from './../../services/alunos.service';
   selector: 'app-cadastrar-aluno',
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AlunoFormComponent
+    AlunoFormComponent,
   ],
   templateUrl: './cadastrar-aluno.component.html',
   styleUrl: './cadastrar-aluno.component.scss'
@@ -31,27 +26,14 @@ export class CadastrarAlunoComponent implements OnInit {
   criarAluno: CadastrarAluno = new CadastrarAluno('', '', '', []);
   alunoCriado: AlunoResponse = new AlunoResponse('', '', '', '', []);
   turmas: PaginatedResponse<Turma> = new PaginatedResponse<Turma>(1, 0, 0, 0, 0, []);
-  form: FormGroup;
   apiErrors: ErrosAPIResponse = new ErrosAPIResponse({});
   msgSuccess!: string;
+  resetFormTrigger = false;
 
   constructor(  
     private alunoService: AlunosService,
     private turmasService: TurmasService,
-    private fb: FormBuilder,    
-  ) { 
-    this.alunoService = alunoService;
-    this.turmasService = turmasService;
-    this.fb = fb;
-
-    this.form = this.fb.group({
-      nome: ['',[Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      cpf: ['', [Validators.required, cpfValidator]],
-      turma_matricular_ids: ['', [minSelectedItems(1)]],
-    });
-
-  }
+  ) { }
   ngOnInit(): void {
     this.turmasService.listarTurmas().subscribe({
       next: (res) => {
@@ -67,14 +49,18 @@ export class CadastrarAlunoComponent implements OnInit {
   CadastrarAlunoSubmit(payload: any) {
     const self = this;
 
+    this.apiErrors = new ErrosAPIResponse({});  
+    this.msgSuccess = '';
+
     this.alunoService.cadastrarAluno(payload).subscribe({
       next: (res) => {
         const aluno = res as AlunoResponse;
         self.alunoCriado = {...aluno};
-        this.form.reset();  
+        
+        this.resetFormTrigger = true;
+        setTimeout(() => this.resetFormTrigger = false);
 
         this.msgSuccess = this.msgSuccessTemplate.replace('%s', this.alunoCriado.nome);
-        this.apiErrors = new ErrosAPIResponse({});      
       },
       error: (err) => {
         
@@ -88,9 +74,7 @@ export class CadastrarAlunoComponent implements OnInit {
           alert('Erro ao cadastrar aluno');
           return;
         }
-
-        this.apiErrors = new ErrosAPIResponse({});  
-        this.msgSuccess = '';
+        
       }
     });
   }

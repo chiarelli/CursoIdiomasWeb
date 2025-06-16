@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { AlunoResponse } from 'src/app/dtos/aluno-response';
@@ -24,6 +24,7 @@ import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
   styleUrl: './aluno-form.component.scss'
 })
 export class AlunoFormComponent implements OnInit {
+  @Input() resetTrigger: boolean = false;
   @Input() initialData?: AlunoResponse;
   @Input() turmas = new PaginatedResponse<Turma>(0, 0, 0, 0, 0, []);
   @Input() apiErrors!: ErrosAPIResponse;
@@ -46,6 +47,12 @@ export class AlunoFormComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['resetTrigger'] && changes['resetTrigger'].currentValue === true) {
+      this.form.reset();
     }
   }
 
