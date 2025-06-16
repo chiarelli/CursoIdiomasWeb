@@ -1,0 +1,33 @@
+<c-modal #staticBackdropModal backdrop="static" id="staticBackdropModal" [(visible)]="isVisible">
+  <c-modal-header class="alert alert-warning">
+    <h5 cModalTitle>Excluir aluno</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <dl>
+      <dt>Nome:</dt>
+      <dd>{{ aluno.nome }}</dd>
+      
+      <dt>CPF:</dt>
+      <dd>{{ aluno.cpf }}</dd>
+      
+      <dt>Email:</dt>
+      <dd>{{ aluno.email }}</dd>
+    </dl>
+
+    <div class="text-center">
+      <strong class="text-danger">Esta ação não pode ser desfeita!</strong>
+    </div>
+
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="staticBackdropModal.id" cButton color="secondary">
+      Cancelar
+    </button>
+    <button 
+        cButton 
+        class="btn btn-danger" 
+        (click)="confirmCallback()"
+    >Excluir</button>
+  </c-modal-footer>
+</c-modal>
