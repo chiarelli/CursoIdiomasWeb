@@ -1,0 +1,12 @@
+<!-- Feedback -->
+<div *ngIf="successMsg" class="alert alert-success mt-3">
+  {{ successMsg }}
+</div>
+
+<div *ngIf="apiErrors?.hasError()" class="alert alert-danger mt-3">
+<ul>
+  <li *ngFor="let error of apiErrors.getErrors()">
+    <strong>{{ error[0] }}:</strong> {{ error[1] }}
+  </li>
+</ul>
+</div>
