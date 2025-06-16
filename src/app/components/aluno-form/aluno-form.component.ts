@@ -8,21 +8,27 @@ import { Turma } from 'src/app/dtos/turma';
 import { cpfValidator } from 'src/app/validators/cpf-validator';
 import { minSelectedItems } from 'src/app/validators/min-selected-items';
 import { PaginatedResponse } from './../../dtos/pagination-response';
+import { AlunoFeedbackComponent } from "../aluno-feedback/aluno-feedback.component";
+import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
 
 @Component({
   selector: 'app-aluno-form',
   imports: [
-    CommonModule, 
-    ReactiveFormsModule, 
+    CommonModule,
+    ReactiveFormsModule,
     FormsModule,
-    NgxMaskDirective
-  ],
+    NgxMaskDirective,
+    AlunoFeedbackComponent
+],
   templateUrl: './aluno-form.component.html',
   styleUrl: './aluno-form.component.scss'
 })
 export class AlunoFormComponent implements OnInit {
   @Input() initialData?: AlunoResponse;
   @Input() turmas = new PaginatedResponse<Turma>(0, 0, 0, 0, 0, []);
+  @Input() apiErrors!: ErrosAPIResponse;
+  @Input() successMsg!: string;
+  
   @Output() onSubmit = new EventEmitter<CadastrarAluno>();
 
   form!: FormGroup;

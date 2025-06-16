@@ -1,4 +1,6 @@
 <app-aluno-form 
-  [turmas]="turmas" 
-  (onSubmit)="CadastrarAlunoSubmit($event)">
-</app-aluno-form>
+  [turmas]="turmas"
+  [apiErrors]="apiErrors"
+  [successMsg]="msgSuccess"
+  (onSubmit)="CadastrarAlunoSubmit($event)"
+></app-aluno-form>

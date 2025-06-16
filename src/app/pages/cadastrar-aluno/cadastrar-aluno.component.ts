@@ -25,12 +25,15 @@ import { AlunosService } from './../../services/alunos.service';
   styleUrl: './cadastrar-aluno.component.scss'
 })
 export class CadastrarAlunoComponent implements OnInit {
+  
+  private readonly msgSuccessTemplate: string = 'Aluno %s cadastrado com sucesso!';
 
   criarAluno: CadastrarAluno = new CadastrarAluno('', '', '', []);
   alunoCriado: AlunoResponse = new AlunoResponse('', '', '', '', []);
   turmas: PaginatedResponse<Turma> = new PaginatedResponse<Turma>(1, 0, 0, 0, 0, []);
   form: FormGroup;
   apiErrors: ErrosAPIResponse = new ErrosAPIResponse({});
+  msgSuccess!: string;
 
   constructor(  
     private alunoService: AlunosService,
@@ -69,6 +72,8 @@ export class CadastrarAlunoComponent implements OnInit {
         const aluno = res as AlunoResponse;
         self.alunoCriado = {...aluno};
         this.form.reset();  
+
+        this.msgSuccess = this.msgSuccessTemplate.replace('%s', this.alunoCriado.nome);
         this.apiErrors = new ErrosAPIResponse({});      
       },
       error: (err) => {
@@ -85,6 +90,7 @@ export class CadastrarAlunoComponent implements OnInit {
         }
 
         this.apiErrors = new ErrosAPIResponse({});  
+        this.msgSuccess = '';
       }
     });
   }
