@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AlunoFormComponent } from 'src/app/components/aluno-form/aluno-form.component';
+import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
+import { ErrosAPI } from 'src/app/interfaces';
+import { minSelectedItems } from 'src/app/validators/min-selected-items';
 import { CadastrarAluno } from '../../dtos/cadastrar-aluno';
 import { PaginatedResponse } from '../../dtos/pagination-response';
 import { TurmasService } from '../../services/turmas.service';
+import { cpfValidator } from '../../validators/cpf-validator';
 import { AlunoResponse } from './../../dtos/aluno-response';
 import { Turma } from './../../dtos/turma';
 import { AlunosService } from './../../services/alunos.service';
-import { cpfValidator } from '../../validators/cpf-validator';
-import { NgxMaskDirective } from 'ngx-mask';
-import { minSelectedItems } from 'src/app/validators/min-selected-items';
-import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
-import { ErrosAPI } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-cadastrar-aluno',
@@ -19,7 +19,7 @@ import { ErrosAPI } from 'src/app/interfaces';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaskDirective,
+    AlunoFormComponent
   ],
   templateUrl: './cadastrar-aluno.component.html',
   styleUrl: './cadastrar-aluno.component.scss'
@@ -61,9 +61,8 @@ export class CadastrarAlunoComponent implements OnInit {
     })
   }
 
-  CadastrarAlunoSubmit() {
+  CadastrarAlunoSubmit(payload: any) {
     const self = this;
-    const payload = {...this.form.value};
 
     this.alunoService.cadastrarAluno(payload).subscribe({
       next: (res) => {
