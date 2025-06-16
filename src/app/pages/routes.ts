@@ -7,5 +7,12 @@ export const routes: Routes = [
     data: {
       title: 'Listagem de Alunos'
     }
+  },
+  {
+    path: 'cadastrar',
+    loadComponent: () => import('./cadastrar-aluno/cadastrar-aluno.component').then(m => m.CadastrarAlunoComponent),
+    data: {
+      title: 'Cadastro de Alunos'
+    }
   }
 ];
