@@ -5,12 +5,14 @@ import { AlunoResponse } from '../../dtos/aluno-response';
 import { PaginatedResponse } from '../../dtos/pagination-response';
 import { AlunosService } from '../../services/alunos.service';
 import { CpfMaskPipe } from '../../utilities/text/cpf-mask.pipe';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-listar-alunos',
   imports: [
     CommonModule,
-    CpfMaskPipe
+    CpfMaskPipe,
+    RouterModule
   ],
   templateUrl: './listar-alunos.component.html',
   styleUrl: './listar-alunos.component.scss'

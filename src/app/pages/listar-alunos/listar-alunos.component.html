@@ -1,7 +1,9 @@
 <div class="card">
   <div class="card-header d-flex justify-content-between align-items-center">
     <strong>Alunos</strong>
-    <button class="btn btn-sm btn-primary">Novo Aluno</button>
+    <a class="btn btn-sm btn-primary" [routerLink]="['../cadastrar']">
+      Novo Aluno
+    </a>
   </div>
 
   <div class="card-body p-0">
@@ -18,11 +20,11 @@
         <tr *ngFor="let aluno of paginate.content">
           <td>{{ aluno.nome }}</td>
           <td>{{ aluno.cpf | cpfMask }}</td>
-          <td>{{ aluno.email }}</td>
+          <td>{{ aluno.email | lowercase }}</td>
           <td class="text-end">
-            <button class="btn btn-sm btn-warning me-2">
+            <a [routerLink]="['../editar', aluno.id]" class="btn btn-sm btn-warning me-2">
               Editar
-            </button>
+            </a>
             <button class="btn btn-sm btn-danger">
               Excluir
             </button>
