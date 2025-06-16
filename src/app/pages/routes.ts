@@ -14,5 +14,12 @@ export const routes: Routes = [
     data: {
       title: 'Cadastro de Alunos'
     }
+  },
+  {
+    path: 'editar/:id',
+    loadComponent: () => import('./editar-aluno/editar-aluno.component').then(m => m.EditarAlunoComponent),
+    data: {
+      title: 'Editar Aluno'
+    }
   }
 ];

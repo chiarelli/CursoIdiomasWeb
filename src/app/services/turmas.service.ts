@@ -16,4 +16,10 @@ export class TurmasService {
     const url = `${env.baseUrl}/turmas?page=${page}&size=${size}`;
     return this.ngHttp.get<PaginatedResponse<Turma>>(url);
   }
+
+  turmasAlunoMatriculado(guid: string): Observable<Turma[]> {
+    const url = `${env.baseUrl}/turmas/aluno/${guid}`;
+    return this.ngHttp.get<Turma[]>(url);
+  }
+
 }
