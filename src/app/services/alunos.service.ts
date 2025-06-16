@@ -30,5 +30,9 @@ export class AlunosService {
   pegarAlunoPorGuid(guid: string): Observable<AlunoResponse> {
     return this.ngHttp.get<AlunoResponse>(`${env.baseUrl}/alunos/${guid}`);
   }
+
+  excluirAluno(guid: string): Observable<void> {
+    return this.ngHttp.delete<void>(`${env.baseUrl}/alunos/${guid}`);
+  }
   
 }
