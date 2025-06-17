@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let turma of paginate.content">
+        <tr *ngFor="let turma of paginate.content" [@fadeOut]="getState(turma.id)">
           <td>{{ turma.numero_turma }}</td>
           <td>{{ turma.ano_letivo }}</td>
           <td>{{ turma.alunos_matriculados.length || 0 }}</td>
@@ -33,7 +33,7 @@
             </a>
             <button class="btn btn-sm btn-danger" 
               [disabled]="turma.alunos_matriculados.length > 0" 
-              (click)="excluirTurma(turma.id)">
+              (click)="openDeleteModal(turma)">
               <i class="cil-trash"></i> Excluir
             </button>
           </td>
@@ -55,3 +55,20 @@
   </app-paginate>
 
 </div>
+
+<app-modal-exclusao-item [confirmCallback]="confirmarExcluirTurma">
+  <span modal-header>Excluir turma</span>
+  <div modal-body>
+    <dl>
+      <dt>Número:</dt>
+      <dd>{{ turmaExclusao?.numero_turma }}</dd>
+
+      <dt>Ano Letivo:</dt>
+      <dd>{{ turmaExclusao?.ano_letivo }}</dd>
+    </dl>
+
+    <div class="text-center">
+      <strong class="text-danger">Esta ação não pode ser desfeita!</strong>
+    </div>
+  </div>
+</app-modal-exclusao-item>

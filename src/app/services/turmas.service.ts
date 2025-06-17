@@ -18,8 +18,11 @@ export class TurmasService {
   }
 
   turmasAlunoMatriculado(guid: string): Observable<Turma[]> {
-    const url = `${env.baseUrl}/turmas/aluno/${guid}`;
-    return this.ngHttp.get<Turma[]>(url);
+    return this.ngHttp.get<Turma[]>(`${env.baseUrl}/turmas/aluno/${guid}`);
+  }
+
+  excluirTurma(guid: string): Observable<void> {
+    return this.ngHttp.delete<void>(`${env.baseUrl}/turmas/${guid}`);
   }
 
 }
