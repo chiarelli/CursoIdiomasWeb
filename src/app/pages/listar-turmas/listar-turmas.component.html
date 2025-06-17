@@ -1,0 +1,57 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <strong>Turmas</strong>
+    <a class="btn btn-sm btn-primary">
+      Nova Turma
+    </a>
+  </div>
+
+  <app-paginate 
+      [paginate]="paginate" 
+      (previousPageClicked)="carregarTurmas()" 
+      (nextPageClicked)="carregarTurmas()">
+  </app-paginate>
+
+   <div class="card-body p-0">
+    <table class="table table-striped mb-0">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Número</th>
+          <th scope="col">Ano Letivo</th>
+          <th scope="col">Alunos Matriculados</th>
+          <th scope="col" class="text-end">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let turma of paginate.content">
+          <td>{{ turma.numero_turma }}</td>
+          <td>{{ turma.ano_letivo }}</td>
+          <td>{{ turma.alunos_matriculados.length || 0 }}</td>
+          <td class="text-end">
+            <a [routerLink]="['/turmas/editar', turma.id]" class="btn btn-sm btn-warning me-1">
+              <i class="cil-pencil"></i> Editar
+            </a>
+            <button class="btn btn-sm btn-danger" 
+              [disabled]="turma.alunos_matriculados.length > 0" 
+              (click)="excluirTurma(turma.id)">
+              <i class="cil-trash"></i> Excluir
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="paginate.content.length === 0">
+          <td colspan="4" class="text-center text-muted py-3">
+            Nenhuma turma cadastrada.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-paginate 
+      [paginate]="paginate" 
+      [displayTotal]="true"
+      (previousPageClicked)="carregarTurmas()" 
+      (nextPageClicked)="carregarTurmas()">
+  </app-paginate>
+
+</div>
