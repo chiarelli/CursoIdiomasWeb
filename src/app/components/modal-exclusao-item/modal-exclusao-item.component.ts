@@ -1,9 +1,8 @@
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ButtonCloseDirective, ButtonDirective, ModalBodyComponent, ModalComponent, ModalFooterComponent, ModalHeaderComponent, ModalTitleDirective, ModalToggleDirective } from '@coreui/angular';
-import { AlunoResponse } from 'src/app/dtos/aluno-response';
 
 @Component({
-  selector: 'app-modal-exclusao-aluno',
+  selector: 'app-modal-exclusao-item',
   imports: [
     ButtonDirective,
     ModalToggleDirective,
@@ -14,18 +13,16 @@ import { AlunoResponse } from 'src/app/dtos/aluno-response';
     ModalBodyComponent,
     ModalFooterComponent
   ],
-  templateUrl: './modal-exclusao-aluno.component.html',
-  styleUrl: './modal-exclusao-aluno.component.scss'
+  templateUrl: './modal-exclusao-item.component.html',
+  styleUrl: './modal-exclusao-item.component.scss'
 })
-export class ModalExclusaoAlunoComponent {
+export class ModalExclusaoItemComponent {
 
   @Input() confirmCallback: (() => void) = () => {};
   
   isVisible: boolean = false;
-  aluno: AlunoResponse = new AlunoResponse('', '', '', '', []);
 
-  show(aluno: AlunoResponse): void {
-    this.aluno = aluno;
+  show(): void {
     this.isVisible = true;
   }
 

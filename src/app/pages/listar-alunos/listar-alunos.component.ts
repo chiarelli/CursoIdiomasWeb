@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { environment as env } from '../../../environments/environment';
-import { ModalExclusaoAlunoComponent } from "../../components/modal-exclusao-aluno/modal-exclusao-aluno.component";
+import { ModalExclusaoItemComponent } from "../../components/modal-exclusao-item/modal-exclusao-item.component";
 import { PaginateComponent } from "../../components/paginate/paginate.component";
 import { AlunoResponse } from '../../dtos/aluno-response';
 import { PaginatedResponse } from '../../dtos/pagination-response';
@@ -19,7 +19,7 @@ const animateTime = 500;
     CommonModule,
     CpfMaskPipe,
     RouterModule,
-    ModalExclusaoAlunoComponent,
+    ModalExclusaoItemComponent,
     PaginateComponent
 ],
   animations: [
@@ -36,7 +36,7 @@ const animateTime = 500;
 })
 export class ListarAlunosComponent implements OnInit {
   
-  @ViewChild(ModalExclusaoAlunoComponent) modal?: ModalExclusaoAlunoComponent;
+  @ViewChild(ModalExclusaoItemComponent) modal?: ModalExclusaoItemComponent;
 
   paginate: PaginatedResponse<AlunoResponse> = new PaginatedResponse<any>(
       1, env.paginationSizeDefault, 0, 0, 0, []
@@ -67,7 +67,7 @@ export class ListarAlunosComponent implements OnInit {
 
   openDeleteModal(aluno: AlunoResponse) {
     this.alunoExclusao = aluno;
-    this.modal?.show(aluno);
+    this.modal?.show();
   }
 
   confirmarExclusao = () => {

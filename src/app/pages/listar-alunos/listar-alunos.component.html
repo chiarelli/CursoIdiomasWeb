@@ -49,4 +49,23 @@
   
 </div>
 
-<app-modal-exclusao-aluno [confirmCallback]="confirmarExclusao"/>
+<app-modal-exclusao-item [confirmCallback]="confirmarExclusao">
+  <span modal-header>Excluir aluno</span>
+  <div modal-body>
+    <dl>
+      <dt>Nome:</dt>
+      <dd>{{ alunoExclusao?.nome }}</dd>
+      
+      <dt>CPF:</dt>
+      <dd>{{ alunoExclusao?.cpf }}</dd>
+      
+      <dt>Email:</dt>
+      <dd>{{ alunoExclusao?.email }}</dd>
+    </dl>
+    
+    <div class="text-center">
+      <strong class="text-danger">Esta ação não pode ser desfeita!</strong>
+    </div>
+
+  </div>
+</app-modal-exclusao-item>

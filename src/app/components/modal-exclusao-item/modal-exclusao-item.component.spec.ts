@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalExclusaoAlunoComponent } from './modal-exclusao-aluno.component';
+import { ModalExclusaoItemComponent } from './modal-exclusao-item.component';
 
 describe('ModalExclusaoAlunoComponent', () => {
-  let component: ModalExclusaoAlunoComponent;
-  let fixture: ComponentFixture<ModalExclusaoAlunoComponent>;
+  let component: ModalExclusaoItemComponent;
+  let fixture: ComponentFixture<ModalExclusaoItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalExclusaoAlunoComponent]
+      imports: [ModalExclusaoItemComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModalExclusaoAlunoComponent);
+    fixture = TestBed.createComponent(ModalExclusaoItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
