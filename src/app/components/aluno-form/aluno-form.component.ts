@@ -8,7 +8,7 @@ import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
 import { Turma } from 'src/app/dtos/turma';
 import { cpfValidator } from 'src/app/validators/cpf-validator';
 import { minSelectedItems } from 'src/app/validators/min-selected-items';
-import { AlunoFeedbackComponent } from "../aluno-feedback/aluno-feedback.component";
+import { ItemFeedbackComponent } from "../item-feedback/item-feedback.component";
 
 @Component({
   selector: 'app-aluno-form',
@@ -17,7 +17,7 @@ import { AlunoFeedbackComponent } from "../aluno-feedback/aluno-feedback.compone
     ReactiveFormsModule,
     FormsModule,
     NgxMaskDirective,
-    AlunoFeedbackComponent
+    ItemFeedbackComponent
 ],
   templateUrl: './aluno-form.component.html',
   styleUrl: './aluno-form.component.scss'

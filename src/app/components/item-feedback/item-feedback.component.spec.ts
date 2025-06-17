@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlunoFeedbackComponent } from './aluno-feedback.component';
+import { ItemFeedbackComponent } from './item-feedback.component';
 
-describe('AlunoFeedbackComponent', () => {
-  let component: AlunoFeedbackComponent;
-  let fixture: ComponentFixture<AlunoFeedbackComponent>;
+describe('ItemFeedbackComponent', () => {
+  let component: ItemFeedbackComponent;
+  let fixture: ComponentFixture<ItemFeedbackComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AlunoFeedbackComponent]
+      imports: [ItemFeedbackComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AlunoFeedbackComponent);
+    fixture = TestBed.createComponent(ItemFeedbackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
