@@ -16,7 +16,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'alunos',
-        loadChildren: () => import('./pages/routes').then((m) => m.routes)
+        loadChildren: () => import('./pages/alunos-routes').then((m) => m.routes)
+      },
+      {
+        path: 'turmas',
+        loadChildren: () => import('./pages/turmas-routes').then((m) => m.routes)
       },
       {
         path: 'dashboard',

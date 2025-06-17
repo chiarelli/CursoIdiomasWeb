@@ -28,6 +28,23 @@ export const navItems: INavData[] = [
     ]
   },
   {
+    name: 'Turmas',
+    url: '/turmas',
+    iconComponent: { name: 'cil-book' },
+    children: [
+      {
+        name: 'Listar',
+        url: '/turmas/listagem',
+        icon: 'nav-icon-bullet'
+      },
+      {
+        name: 'Cadastrar',
+        url: '/turmas/cadastrar',
+        icon: 'nav-icon-bullet'
+      }
+    ]
+  },
+  {
     title: true,
     name: 'Theme'
   },
