@@ -1,8 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { ErrosAPI } from 'src/app/interfaces';
 import { environment as env } from '../../../environments/environment';
 import { ModalExclusaoItemComponent } from "../../components/modal-exclusao-item/modal-exclusao-item.component";
 import { PaginateComponent } from "../../components/paginate/paginate.component";
@@ -71,8 +73,22 @@ export class ListarAlunosComponent implements OnInit {
   confirmarExclusao = () => {
     if (this.alunoExclusao) {
       this.excluirAlunoSubmit(this.alunoExclusao).subscribe({
-        next: () => {
+        complete: () => {
           this.modal?.hide();
+        },
+        error: (err) => {
+          this.modal?.hide();
+          const httpError = err as HttpErrorResponse;
+          
+          if (err.status === 400) {
+            const errors = httpError.error.erros as ErrosAPI;
+            
+            let message = '';
+            for (const [key, error] of Object.entries(errors)) {
+              message += `${key}: ${error}\n`;
+            }
+            alert(`Erro ao excluir aluno\n${message}`);
+          }
         }
       });
     }

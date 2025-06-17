@@ -31,7 +31,7 @@
             <a [routerLink]="['../editar', aluno.id]" class="btn btn-sm btn-warning me-2">
               Editar
             </a>
-            <button class="btn btn-sm btn-danger" (click)="openDeleteModal(aluno)">
+            <button class="btn btn-sm btn-danger" [disabled]="aluno.turmas_matriculadas.length > 1" (click)="openDeleteModal(aluno)">
               Excluir
             </button>
           </td>
