@@ -1,0 +1,6 @@
+<div class="card-footer d-flex justify-content-between align-items-center">
+  <button class="btn btn-outline-secondary btn-sm" (click)="previousPage()" [disabled]="paginate.page <= 1">Anterior</button>
+  <span>Página {{ paginate.page }} de {{ paginate.total_pages }}</span>
+  <span [hidden]="!displayTotal">Total: {{ paginate.total_query_count }}</span>
+  <button class="btn btn-outline-secondary btn-sm" (click)="nextPage()" [disabled]="paginate.page >= paginate.total_pages">Próxima</button>
+</div>
