@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment as env } from '../../environments/environment';
 import { PaginatedResponse } from '../dtos/pagination-response';
 import { Turma } from '../dtos/turma';
-import { environment as env } from '../../environments/environment';
+import { TurmaCadastrar } from '../dtos/turma-cadastrar';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class TurmasService {
 
   excluirTurma(guid: string): Observable<void> {
     return this.ngHttp.delete<void>(`${env.baseUrl}/turmas/${guid}`);
+  }
+
+  cadastrarTurma(turma: TurmaCadastrar): Observable<Turma> {
+    return this.ngHttp.post<Turma>(`${env.baseUrl}/turmas`, turma);
   }
 
 }
