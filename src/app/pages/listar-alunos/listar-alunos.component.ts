@@ -11,8 +11,6 @@ import { PaginatedResponse } from '../../dtos/pagination-response';
 import { AlunosService } from '../../services/alunos.service';
 import { CpfMaskPipe } from '../../utilities/text/cpf-mask.pipe';
 
-const animateTime = 500;
-
 @Component({
   selector: 'app-listar-alunos',
   imports: [
@@ -27,7 +25,7 @@ const animateTime = 500;
       state('visible', style({ opacity: 1 })),
       state('hidden', style({ opacity: 0, height: '0px', overflow: 'hidden', padding: '0' })),
       transition('visible => hidden', [
-        animate(`${animateTime}ms ease-out`)
+        animate(`${env.animationDeleteItemTime}ms ease-out`)
       ])
     ])
   ],
@@ -96,7 +94,7 @@ export class ListarAlunosComponent implements OnInit {
           this.carregarAlunos()
         }
 
-      }, animateTime);
+      }, env.animationDeleteItemTime);
     }),
     catchError(err => {
       console.error('Erro ao excluir aluno', err);
