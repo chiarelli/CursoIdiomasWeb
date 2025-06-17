@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { environment as env } from '../../../environments/environment';
 import { ModalExclusaoAlunoComponent } from "../../components/modal-exclusao-aluno/modal-exclusao-aluno.component";
+import { PaginateComponent } from "../../components/paginate/paginate.component";
 import { AlunoResponse } from '../../dtos/aluno-response';
 import { PaginatedResponse } from '../../dtos/pagination-response';
 import { AlunosService } from '../../services/alunos.service';
@@ -18,7 +19,8 @@ const animateTime = 500;
     CommonModule,
     CpfMaskPipe,
     RouterModule,
-    ModalExclusaoAlunoComponent
+    ModalExclusaoAlunoComponent,
+    PaginateComponent
 ],
   animations: [
     trigger('fadeOut', [
@@ -37,7 +39,7 @@ export class ListarAlunosComponent implements OnInit {
   @ViewChild(ModalExclusaoAlunoComponent) modal?: ModalExclusaoAlunoComponent;
 
   paginate: PaginatedResponse<AlunoResponse> = new PaginatedResponse<any>(
-        1, env.paginationSizeDefault, 0, 0, 0, []
+      1, env.paginationSizeDefault, 0, 0, 0, []
   );
 
   animatingIds: Set<string> = new Set();
