@@ -6,6 +6,12 @@
     </a>
   </div>
 
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <button class="btn btn-outline-secondary btn-sm" (click)="paginaAnterior()" [disabled]="paginate.page <= 1">Anterior</button>
+    <span>Página {{ paginate.page }} de {{ paginate.total_pages }}</span>
+    <button class="btn btn-outline-secondary btn-sm" (click)="proximaPagina()" [disabled]="paginate.page >= paginate.total_pages">Próxima</button>
+  </div>
+
   <div class="card-body p-0">
     <table class="table table-striped mb-0">
       <thead class="table-light">
@@ -37,6 +43,7 @@
   <div class="card-footer d-flex justify-content-between align-items-center">
     <button class="btn btn-outline-secondary btn-sm" (click)="paginaAnterior()" [disabled]="paginate.page <= 1">Anterior</button>
     <span>Página {{ paginate.page }} de {{ paginate.total_pages }}</span>
+    <span>Total: {{ paginate.total_query_count }}</span>
     <button class="btn btn-outline-secondary btn-sm" (click)="proximaPagina()" [disabled]="paginate.page >= paginate.total_pages">Próxima</button>
   </div>
 </div>

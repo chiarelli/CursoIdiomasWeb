@@ -49,10 +49,10 @@ export class ListarAlunosComponent implements OnInit {
     this.carregarAlunos();
   }
   
-  carregarAlunos(): void {
+  carregarAlunos(page: number = this.paginate.page, size: number = this.paginate.size): void {
     const self = this;
 
-    this.alunoService.listarAlunos(this.paginate.page, this.paginate.size).subscribe({
+    this.alunoService.listarAlunos(page, size).subscribe({
       next: (res) => {
         self.paginate = {...res};
       },
@@ -101,6 +101,13 @@ export class ListarAlunosComponent implements OnInit {
       setTimeout(() => {
         this.paginate.content = this.paginate.content.filter(a => a.id !== aluno.id);
         this.animatingIds.delete(aluno.id);
+
+        if(this.paginate.length <= 1) {
+          this.carregarAlunos(this.paginate.page-1);
+        } else {
+          this.carregarAlunos()
+        }
+
       }, animateTime);
     }),
     catchError(err => {
