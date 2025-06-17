@@ -8,8 +8,8 @@
 
   <app-paginate 
       [paginate]="paginate" 
-      [onNextPage]="carregarAlunos" 
-      [onPreviousPage]="carregarAlunos">
+      (nextPageClicked)="carregarAlunos()"
+      (previousPageClicked)="carregarAlunos()">
   </app-paginate>
 
   <div class="card-body p-0">
@@ -43,8 +43,8 @@
   <app-paginate 
       [paginate]="paginate" 
       [displayTotal]="true"
-      [onNextPage]="carregarAlunos" 
-      [onPreviousPage]="carregarAlunos">
+      (nextPageClicked)="carregarAlunos()"
+      (previousPageClicked)="carregarAlunos()">
   </app-paginate>
   
 </div>

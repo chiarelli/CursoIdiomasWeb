@@ -65,20 +65,6 @@ export class ListarAlunosComponent implements OnInit {
     });
   }
 
-   paginaAnterior() {
-    if (this.paginate.page > 1) {
-      this.paginate.page--;
-      this.carregarAlunos();
-    }
-  }
-
-  proximaPagina() {
-    if (this.paginate.page < this.paginate.total_pages) {
-      this.paginate.page++;
-      this.carregarAlunos();
-    }
-  }
-
   openDeleteModal(aluno: AlunoResponse) {
     this.alunoExclusao = aluno;
     this.modal?.show(aluno);

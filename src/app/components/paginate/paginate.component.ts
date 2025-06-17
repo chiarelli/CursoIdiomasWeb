@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PaginatedResponse } from 'src/app/dtos/pagination-response';
 
 @Component({
@@ -10,21 +10,22 @@ import { PaginatedResponse } from 'src/app/dtos/pagination-response';
 export class PaginateComponent {
 
   @Input() paginate!: PaginatedResponse<any>;
-  @Input() onNextPage: Function = () => {};
-  @Input() onPreviousPage: Function = () => {};
   @Input() displayTotal: boolean = false;
+  
+  @Output() nextPageClicked = new EventEmitter<void>();
+  @Output() previousPageClicked = new EventEmitter<void>();
 
   previousPage() {
     if (this.paginate.page > 1) {
       this.paginate.page--;
-      this.onPreviousPage();
+      this.previousPageClicked.emit();
     }
   }
 
   nextPage() {
     if (this.paginate.page < this.paginate.total_pages) {
       this.paginate.page++;
-      this.onNextPage();
+       this.nextPageClicked.emit();
     }
   }
 
