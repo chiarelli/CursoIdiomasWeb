@@ -18,7 +18,7 @@
 <!-- Lista de alunos matriculados -->
 <div *ngIf="alunos.length > 0; else nenhumAluno">
   <div class="row">
-    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let aluno of alunos">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let aluno of alunos" [@fadeOut]="getState(aluno.id)">
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">{{ aluno.nome }}</h5>
@@ -29,7 +29,7 @@
           <a class="btn btn-sm btn-outline-primary" [routerLink]="['/alunos/editar', aluno.id]">
             Editar
           </a>
-          <a class="btn btn-sm btn-outline-danger">
+          <a class="btn btn-sm btn-outline-danger" (click)="openDesmatricularModal(aluno)">
             Desmatricular
           </a>
         </div>
@@ -44,3 +44,4 @@
   </div>
 </ng-template>
 
+<app-desmatricular-aluno [resultCallback]="alunoDesmatriculado" />

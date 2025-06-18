@@ -1,26 +1,42 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AlunoResponse } from 'src/app/dtos/aluno-response';
 import { Turma } from 'src/app/dtos/turma';
 import { AlunosService } from 'src/app/services/alunos.service';
 import { TurmasService } from 'src/app/services/turmas.service';
+import { environment as env } from 'src/environments/environment';
 import { CpfMaskPipe } from "../../utilities/text/cpf-mask.pipe";
+import { DesmatricularAlunoComponent } from "../desmatricular-aluno/desmatricular-aluno.component";
 
 @Component({
   selector: 'app-listar-alunos-turma',
   imports: [
     CommonModule,
     RouterModule,
-    CpfMaskPipe
+    CpfMaskPipe,
+    DesmatricularAlunoComponent
 ],
+  animations: [
+    trigger('fadeOut', [
+      state('visible', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0, height: '0px', overflow: 'hidden', padding: '0' })),
+      transition('visible => hidden', [
+        animate(`${env.animationDeleteItemTime}ms ease-out`)
+      ])
+    ])
+  ],
   templateUrl: './listar-alunos-turma.component.html',
   styleUrl: './listar-alunos-turma.component.scss'
 })
 export class ListarAlunosTurmaComponent implements OnInit {
 
+  @ViewChild(DesmatricularAlunoComponent) desmatricularAction?: DesmatricularAlunoComponent
+  animatingIds: Set<string> = new Set();
+
   alunos: AlunoResponse[] = [];
-  turma!: Turma;
+  turma = {} as Turma;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +57,20 @@ export class ListarAlunosTurmaComponent implements OnInit {
       this.#carregarAlunos(turmaId)
     ]);
 
+  }
+
+  alunoDesmatriculado = (aluno: AlunoResponse): void => {
+    this.animatingIds.add(aluno.id);
+
+    setTimeout(() => {
+      this.alunos = this.alunos.filter(a => a.id !== aluno.id);
+      this.animatingIds.delete(aluno.id);
+    }, env.animationDeleteItemTime);
+
+  }
+
+  openDesmatricularModal(aluno: AlunoResponse) {
+    this.desmatricularAction?.execute(aluno, this.turma);
   }
 
   #carregarAlunos(turmaId: string) {
@@ -73,6 +103,10 @@ export class ListarAlunosTurmaComponent implements OnInit {
         }
       }
     });
+  }
+
+  getState(id: string): 'visible' | 'hidden' {
+    return this.animatingIds.has(id) ? 'hidden' : 'visible';
   }
 
 }
