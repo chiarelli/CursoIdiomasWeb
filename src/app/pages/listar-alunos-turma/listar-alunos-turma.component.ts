@@ -59,7 +59,7 @@ export class ListarAlunosTurmaComponent implements OnInit {
 
   }
 
-  alunoDesmatriculado = (aluno: AlunoResponse): void => {
+  alunoDesmatriculado = (turma: Turma, aluno: AlunoResponse): void => {
     this.animatingIds.add(aluno.id);
 
     setTimeout(() => {
@@ -105,8 +105,8 @@ export class ListarAlunosTurmaComponent implements OnInit {
     });
   }
 
-  getState(id: string): 'visible' | 'hidden' {
-    return this.animatingIds.has(id) ? 'hidden' : 'visible';
+  getState(turmaId: string): 'visible' | 'hidden' {
+    return this.animatingIds.has(turmaId) ? 'hidden' : 'visible';
   }
 
 }

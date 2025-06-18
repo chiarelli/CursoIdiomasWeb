@@ -21,7 +21,7 @@ import { SecretariaService } from 'src/app/services/secretaria.service';
 })
 export class DesmatricularAlunoComponent {
 
-  @Input() resultCallback = (aluno: AlunoResponse): void => {};
+  @Input() resultCallback = (turma: Turma, aluno: AlunoResponse): void => {};
   
   isVisible: boolean = false;
 
@@ -50,7 +50,7 @@ export class DesmatricularAlunoComponent {
 
     this.secretariaService.desmatricularAluno(this.turma.id, this.aluno.id).subscribe({
       next: () => {
-        this.resultCallback(this.aluno);
+        this.resultCallback(this.turma, this.aluno);
         this.closeModal();
       },
       error: (err) => {
