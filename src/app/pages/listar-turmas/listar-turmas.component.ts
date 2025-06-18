@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { PopoverDirective } from '@coreui/angular';
 import { ModalExclusaoItemComponent } from 'src/app/components/modal-exclusao-item/modal-exclusao-item.component';
 import { PaginatedResponse } from 'src/app/dtos/pagination-response';
 import { Turma } from 'src/app/dtos/turma';
@@ -15,7 +16,8 @@ import { PaginateComponent } from "../../components/paginate/paginate.component"
     CommonModule,
     PaginateComponent,
     RouterModule,
-    ModalExclusaoItemComponent
+    ModalExclusaoItemComponent,
+    PopoverDirective,
 ],
   animations: [
     trigger('fadeOut', [

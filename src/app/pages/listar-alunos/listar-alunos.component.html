@@ -19,7 +19,7 @@
           <th>Nome</th>
           <th>CPF</th>
           <th>Email</th>
-          <th>Turmas Matriculadas</th>
+          <th>Turmas</th>
           <th class="text-end">Ações</th>
         </tr>
       </thead>
@@ -30,7 +30,9 @@
           <td>{{ aluno.email | lowercase }}</td>
           <td>
             <div *ngIf="aluno.turmas_matriculadas.length > 0">
-              <a [routerLink]="['/turmas/aluno', aluno.id, 'matriculado']">{{ aluno.turmas_matriculadas.length }}</a>            
+              <a [routerLink]="['/turmas/aluno', aluno.id, 'matriculado']"
+              cPopover="Turmas em que o aluno está matriculado"
+              cPopoverPlacement="top">{{ aluno.turmas_matriculadas.length }}</a>            
             </div>
             <div *ngIf="aluno.turmas_matriculadas.length == 0">
               {{ aluno.turmas_matriculadas.length }}
@@ -41,7 +43,7 @@
               Editar
             </a>
             <span
-              cPopover="Não pode ser excluido se o aluno estiver matriculado em mais de uma turma"
+              cPopover="Não pode ser excluido, se o aluno estiver matriculado em mais de uma turma"
               [cPopoverTrigger]="aluno.turmas_matriculadas.length > 1 ? 'hover' : 'focusin'"
               cPopoverPlacement="left">
 

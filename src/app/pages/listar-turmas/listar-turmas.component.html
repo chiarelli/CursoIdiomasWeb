@@ -18,7 +18,7 @@
         <tr>
           <th scope="col">Número</th>
           <th scope="col">Ano Letivo</th>
-          <th scope="col">Alunos Matriculados</th>
+          <th scope="col">Alunos</th>
           <th scope="col" class="text-end">Ações</th>
         </tr>
       </thead>
@@ -31,11 +31,18 @@
             <a [routerLink]="['/turmas/editar', turma.id]" class="btn btn-sm btn-warning me-1">
               <i class="cil-pencil"></i> Editar
             </a>
-            <button class="btn btn-sm btn-danger" 
-              [disabled]="turma.alunos_matriculados.length > 0" 
-              (click)="openDeleteModal(turma)">
-              <i class="cil-trash"></i> Excluir
-            </button>
+            
+            <span
+              cPopover="Não pode ser excluido, se turma tiver alunos matriculados"
+              [cPopoverTrigger]="turma.alunos_matriculados.length > 0 ? 'hover' : 'focusin'"
+              cPopoverPlacement="left"
+            >
+              <button class="btn btn-sm btn-danger" 
+                [disabled]="turma.alunos_matriculados.length > 0" 
+                (click)="openDeleteModal(turma)">
+                <i class="cil-trash"></i> Excluir
+              </button>
+            </span>
           </td>
         </tr>
         <tr *ngIf="paginate.content.length === 0">
