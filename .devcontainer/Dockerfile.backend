@@ -1,0 +1,16 @@
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y git maven nano \
+    && rm -rf /var/lib/apt/lists/*
+
+# Clone o projeto
+RUN git clone https://github.com/chiarelli/CursoIdiomasAPI.git
+  # --depth 1 --recurse-submodules
+
+WORKDIR /app/CursoIdiomasAPI
+RUN mvn clean install -DskipTests
+
+EXPOSE 8080
+CMD ["mvn", "clean", "spring-boot:run", "-Dspring-boot.run.arguments=--server.address=0.0.0.0"]
