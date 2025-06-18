@@ -35,25 +35,45 @@
               cPopoverPlacement="top">{{ aluno.turmas_matriculadas.length }}</a>            
             </div>
             <div *ngIf="aluno.turmas_matriculadas.length == 0">
-              {{ aluno.turmas_matriculadas.length }}
+              <a [routerLink]="['/turmas/aluno', aluno.id, 'matriculado']"
+              cPopover="Matricular o aluno em uma turma"
+              cPopoverPlacement="top">0</a>            
             </div>
           </td>
           <td class="text-end">
-            <a [routerLink]="['../editar', aluno.id]" class="btn btn-sm btn-outline-info me-2">
+
+            <a class="btn btn-sm btn-outline-info me-2"
+            [routerLink]="['../editar', aluno.id]"
+            cPopoverPlacement="top"
+            cPopover="Editar dados do aluno">
               <i class="cil-pencil"></i>
             </a>
-            <span
-              cPopover="Não pode ser excluido, se o aluno estiver matriculado em mais de uma turma"
-              [cPopoverTrigger]="aluno.turmas_matriculadas.length > 1 ? 'hover' : 'focusin'"
-              cPopoverPlacement="left">
 
-              <button class="btn btn-sm btn-outline-danger"
-                  [disabled]="aluno.turmas_matriculadas.length > 1"
-                  (click)="openDeleteModal(aluno)">
-                <i class="cil-trash"></i>
-              </button>
+            <a class="btn btn-sm btn-outline-secondary me-2"
+              [routerLink]="['/turmas/aluno', aluno.id, 'matriculado']"
+              cPopoverPlacement="top"
+              cPopover="Visualizar, matricular ou desmatricular o aluno em turmas.">
+              <i class="cil-settings"></i>
+            </a>
 
-            </span>
+            <a class="btn btn-sm btn-outline-danger"
+            *ngIf="aluno.turmas_matriculadas.length > 0; else elseDeleteBtn"
+                  cPopover="Excluir o aluno"
+                  cPopoverPlacement="left"
+                (click)="openDeleteModal(aluno)">
+              <i class="cil-trash"></i>
+            </a>
+
+            <ng-template #elseDeleteBtn>
+              <span cPopover="Não pode ser excluido, se o aluno estiver matriculado em mais de uma turma"
+                  cPopoverPlacement="left">
+                <button class="btn btn-sm btn-outline-danger"
+                    [disabled]="true">
+                  <i class="cil-trash"></i>
+                </button>
+              </span>
+            </ng-template>
+
           </td>          
         </tr>
         <tr *ngIf="paginate.content.length === 0">
