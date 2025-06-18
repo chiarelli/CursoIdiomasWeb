@@ -21,5 +21,12 @@ export const routes: Routes = [
     data: {
       title: 'Editar Aluno'
     }
+  },
+  {
+    path: 'turma/:turmaId',
+    loadComponent: () => import('./listar-alunos-turma/listar-alunos-turma.component').then(m => m.ListarAlunosTurmaComponent),
+    data: {
+      title: 'Alunos da Turma'
+    }
   }
 ];

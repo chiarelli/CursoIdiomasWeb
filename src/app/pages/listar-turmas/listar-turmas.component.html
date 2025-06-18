@@ -26,7 +26,16 @@
         <tr *ngFor="let turma of paginate.content" [@fadeOut]="getState(turma.id)">
           <td>{{ turma.numero_turma }}</td>
           <td>{{ turma.ano_letivo }}</td>
-          <td>{{ turma.alunos_matriculados.length || 0 }}</td>
+          <td>
+            <div *ngIf="turma.alunos_matriculados.length > 0">
+              <a [routerLink]="['/alunos/turma', turma.id]">
+                {{ turma.alunos_matriculados.length || 0 }}
+              </a>
+            </div>
+            <div *ngIf="turma.alunos_matriculados.length == 0">
+              {{ turma.alunos_matriculados.length || 0 }}
+            </div>
+          </td>
           <td class="text-end">
             <a [routerLink]="['/turmas/editar', turma.id]" class="btn btn-sm btn-warning me-1">
               <i class="cil-pencil"></i> Editar

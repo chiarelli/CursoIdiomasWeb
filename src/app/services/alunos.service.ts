@@ -34,5 +34,10 @@ export class AlunosService {
   excluirAluno(guid: string): Observable<void> {
     return this.ngHttp.delete<void>(`${env.baseUrl}/alunos/${guid}`);
   }
+
+  todosAlunosDaTurma(turmaId: string): Observable<AlunoResponse[]> {
+    return this.ngHttp.get<AlunoResponse[]>(`${env.baseUrl}/alunos/turma/${turmaId}`);
+
+  }
   
 }
