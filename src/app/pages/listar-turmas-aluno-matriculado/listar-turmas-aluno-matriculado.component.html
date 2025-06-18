@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <!-- Cabeçalho com dados do aluno -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <strong>Dados do Aluno</strong>
+    </div>
+    <div class="card-body">
+      <p><strong>Nome:</strong> {{ aluno.nome }}</p>
+      <p><strong>E-mail:</strong> {{ aluno.email }}</p>
+      <p><strong>CPF:</strong> {{ aluno.cpf }}</p>
+
+      <div class="d-flex justify-content-end mt-3">
+        <a class="btn btn-sm btn-outline-primary" [routerLink]="['/alunos/editar', aluno.id]">
+          Editar
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de turmas em cards -->
+  <div class="row" *ngIf="turmas.length > 0">
+    <div class="col-md-6 mb-3" *ngFor="let turma of turmas">
+      <div class="card shadow-sm h-100 d-flex flex-column">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 class="card-title">Turma {{ turma.numero_turma }}</h5>
+            <p class="card-text mb-4">
+              <strong>Ano Letivo:</strong> {{ turma.ano_letivo }}<br />
+              <strong>Total de Alunos:</strong> {{ turma.alunos_matriculados.length || 0 }}
+            </p>
+          </div>
+          <div class="mt-auto text-end" [hidden]="turmas.length == 1">
+            <button class="btn btn-sm btn-outline-danger" type="button">
+              Desmatricular
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Caso não haja turmas -->
+  <div *ngIf="turmas.length === 0" class="alert alert-info">
+    Este aluno não está matriculado em nenhuma turma.
+  </div>
+</div>

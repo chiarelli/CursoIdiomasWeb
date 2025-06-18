@@ -39,4 +39,8 @@ export class TurmasService {
     return this.ngHttp.put<Turma>(`${env.baseUrl}/turmas/${guid}`, payload);
   }
 
+  obterTurmasAlunoMatriculado(guid: string): Observable<Turma[]> {
+    return this.ngHttp.get<Turma[]>(`${env.baseUrl}/turmas/aluno/${guid}`);
+  }
+
 }

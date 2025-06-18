@@ -12,5 +12,12 @@ export const routes: Routes = [
   {
     path: 'editar/:id',
     loadComponent: () => import('./editar-turma/editar-turma.component').then(m => m.EditarTurmaComponent)
+  },
+  {
+    path: 'aluno/:aluno_id/matriculado',
+    loadComponent: () => import('./listar-turmas-aluno-matriculado/listar-turmas-aluno-matriculado.component').then(m => m.ListarTurmasAlunoMatriculadoComponent),
+    data: {
+      title: 'Turmas Matriculadas'
+    }
   }
 ];
