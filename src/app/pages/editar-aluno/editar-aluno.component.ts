@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute } from '@angular/router';
 import { NgxMaskPipe } from 'ngx-mask';
 import { ItemFeedbackComponent } from 'src/app/components/item-feedback/item-feedback.component';
-import { AlunoResponse } from 'src/app/dtos/aluno-response';
+import { AlunoResponse, AlunoResponseNull } from 'src/app/dtos/aluno-response';
 import { ErrosAPIResponse } from 'src/app/dtos/errors-response';
 import { Turma } from 'src/app/dtos/turma';
 import { ErrosAPI } from 'src/app/interfaces';
@@ -31,7 +31,7 @@ export class EditarAlunoComponent implements OnInit {
   apiErrors: ErrosAPIResponse = new ErrosAPIResponse({});
   msgSuccess: string = '';
   form!: FormGroup;
-  alunoEditar!: AlunoResponse;
+  alunoEditar = new AlunoResponseNull();
 
   constructor(
     private alunoService: AlunosService,
