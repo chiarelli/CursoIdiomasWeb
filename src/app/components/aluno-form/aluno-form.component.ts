@@ -10,6 +10,7 @@ import { cpfValidator } from 'src/app/validators/cpf-validator';
 import { minSelectedItems } from 'src/app/validators/min-selected-items';
 import { ItemFeedbackComponent } from "../item-feedback/item-feedback.component";
 import { FormControlDirective } from '@coreui/angular';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-aluno-form',
@@ -19,7 +20,8 @@ import { FormControlDirective } from '@coreui/angular';
     FormsModule,
     NgxMaskDirective,
     ItemFeedbackComponent,
-    FormControlDirective
+    FormControlDirective,
+    RouterLink
 ],
   templateUrl: './aluno-form.component.html',
   styleUrl: './aluno-form.component.scss'
@@ -30,6 +32,7 @@ export class AlunoFormComponent implements OnInit {
   @Input() turmas: Turma[] = [];
   @Input() apiErrors!: ErrosAPIResponse;
   @Input() successMsg!: string;
+  @Input() alunoCriado!: AlunoResponse;
   
   @Output() onSubmit = new EventEmitter<CadastrarAluno>();
 

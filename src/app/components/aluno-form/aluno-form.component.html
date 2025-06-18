@@ -77,7 +77,14 @@
         </button>
       </form>
 
-      <app-item-feedback [apiErrors]="apiErrors" [successMsg]="successMsg"></app-item-feedback>
+      <app-item-feedback [apiErrors]="apiErrors" [successMsg]="successMsg">
+        <a success-actions 
+          *ngIf="alunoCriado?.id" 
+          [routerLink]="['/turmas/aluno', alunoCriado.id, 'matriculado']"
+          class="btn btn-sm btn-info text-dark ms-3">
+            <i class="cil-magnifying-glass me-1"></i> Visualizar
+        </a>
+      </app-item-feedback>
 
     </div>
   </div>

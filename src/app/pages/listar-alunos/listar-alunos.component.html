@@ -57,11 +57,11 @@
             </a>
 
             <a class="btn btn-sm btn-outline-danger"
-            *ngIf="aluno.turmas_matriculadas.length > 0; else elseDeleteBtn"
-                  cPopover="Excluir o aluno"
-                  cPopoverPlacement="left"
-                (click)="openDeleteModal(aluno)">
-              <i class="cil-trash"></i>
+              *ngIf="aluno.turmas_matriculadas.length <= 1; else elseDeleteBtn"
+              cPopover="Excluir o aluno"
+              cPopoverPlacement="left"
+              (click)="openDeleteModal(aluno)">
+                <i class="cil-trash"></i>
             </a>
 
             <ng-template #elseDeleteBtn>

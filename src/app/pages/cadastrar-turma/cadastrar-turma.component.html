@@ -46,7 +46,14 @@
         </button>
       </form>
 
-      <app-item-feedback [apiErrors]="apiErrors" [successMsg]="msgSuccess"></app-item-feedback>
+      <app-item-feedback [apiErrors]="apiErrors" [successMsg]="msgSuccess">
+        <a class="btn btn-sm btn-info text-dark ms-3" 
+          success-actions
+          *ngIf="turma?.id" 
+          [routerLink]="['/alunos/turma', turma.id]">
+            <i class="cil-magnifying-glass me-1"></i> Visualizar
+        </a>
+      </app-item-feedback>
     </div>
   </div>
 </div>

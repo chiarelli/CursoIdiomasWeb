@@ -1,12 +1,14 @@
 <!-- Feedback -->
 <div *ngIf="successMsg && successMsg.length > 0" class="alert alert-success mt-3">
-  {{ successMsg }}
+  <span>{{ successMsg }}</span>
+    
+  <ng-content select="[success-actions]"></ng-content>
 </div>
 
 <div *ngIf="apiErrors?.hasError()" class="alert alert-danger mt-3">
-<ul>
-  <li *ngFor="let error of apiErrors.getErrors()">
-    <strong>{{ error[0] }}:</strong> {{ error[1] }}
-  </li>
-</ul>
+  <ul>
+    <li *ngFor="let error of apiErrors.getErrors()">
+      <strong>{{ error[0] }}:</strong> {{ error[1] }}
+    </li>
+  </ul>
 </div>
