@@ -19,6 +19,7 @@
           <th>Nome</th>
           <th>CPF</th>
           <th>Email</th>
+          <th>Turmas Matriculadas</th>
           <th class="text-end">Ações</th>
         </tr>
       </thead>
@@ -27,14 +28,32 @@
           <td>{{ aluno.nome }}</td>
           <td>{{ aluno.cpf | cpfMask }}</td>
           <td>{{ aluno.email | lowercase }}</td>
+          <td>
+            <div *ngIf="aluno.turmas_matriculadas.length > 0">
+              <a [routerLink]="['/turmas/aluno', aluno.id, 'matriculado']">{{ aluno.turmas_matriculadas.length }}</a>            
+            </div>
+            <div *ngIf="aluno.turmas_matriculadas.length == 0">
+              {{ aluno.turmas_matriculadas.length }}
+            </div>
+          </td>
           <td class="text-end">
             <a [routerLink]="['../editar', aluno.id]" class="btn btn-sm btn-warning me-2">
               Editar
             </a>
-            <button class="btn btn-sm btn-danger" [disabled]="aluno.turmas_matriculadas.length > 1" (click)="openDeleteModal(aluno)">
-              Excluir
-            </button>
+            <span
+              cPopover="Não pode ser excluido se o aluno estiver matriculado em mais de uma turma"
+              [cPopoverTrigger]="aluno.turmas_matriculadas.length > 1 ? 'hover' : 'focusin'"
+              cPopoverPlacement="left">
+
+              <button cButton class="btn btn-sm btn-danger"
+                  [disabled]="aluno.turmas_matriculadas.length > 1"
+                  (click)="openDeleteModal(aluno)">
+                Excluir
+              </button>
+
+            </span>
           </td>
+          
         </tr>
       </tbody>
     </table>

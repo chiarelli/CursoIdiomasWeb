@@ -12,6 +12,7 @@ import { AlunoResponse } from '../../dtos/aluno-response';
 import { PaginatedResponse } from '../../dtos/pagination-response';
 import { AlunosService } from '../../services/alunos.service';
 import { CpfMaskPipe } from '../../utilities/text/cpf-mask.pipe';
+import { ButtonDirective, PopoverDirective } from '@coreui/angular';
 
 @Component({
   selector: 'app-listar-alunos',
@@ -20,7 +21,9 @@ import { CpfMaskPipe } from '../../utilities/text/cpf-mask.pipe';
     CpfMaskPipe,
     RouterModule,
     ModalExclusaoItemComponent,
-    PaginateComponent
+    PaginateComponent, 
+    ButtonDirective, 
+    PopoverDirective,
 ],
   animations: [
     trigger('fadeOut', [
