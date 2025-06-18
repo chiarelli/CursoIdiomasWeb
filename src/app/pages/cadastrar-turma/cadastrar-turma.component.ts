@@ -55,8 +55,7 @@ export class CadastrarTurmaComponent {
           .replace('$2', turmaRequest.ano_letivo.toString());
 
         this.form.reset();
-
-        console.log('Turma cadastrada:', this.turma);
+        // console.log('Turma cadastrada:', this.turma);
       },
       error: (err) => {
         if (err.status === 400 && err.error) {

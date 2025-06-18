@@ -31,7 +31,7 @@ export class DesmatricularAlunoComponent {
   constructor(private secretariaService: SecretariaService) { }
 
   execute(aluno: AlunoResponse, turma: Turma) {
-    console.log("Executando desmatricular aluno");
+    // console.log("Executando desmatricular aluno");
     this.aluno = aluno;
     this.turma = turma;
     this.openModal();
@@ -46,8 +46,7 @@ export class DesmatricularAlunoComponent {
   }
 
   desmatricularSubmit() {
-    console.log("Desmatricular aluno", this.aluno, this.turma);
-
+    // console.log("Desmatricular aluno", this.aluno, this.turma);
     this.secretariaService.desmatricularAluno(this.turma.id, this.aluno.id).subscribe({
       next: () => {
         this.resultCallback(this.turma, this.aluno);

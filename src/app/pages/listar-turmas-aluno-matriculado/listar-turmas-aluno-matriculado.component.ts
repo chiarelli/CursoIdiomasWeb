@@ -64,8 +64,7 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
     this.alunoService.pegarAlunoPorGuid(alunoId).subscribe({
       next: (res) => {
         this.aluno = {...res} as AlunoResponse;
-
-        console.log('Aluno carregado:', this.aluno);
+        // console.log('Aluno carregado:', this.aluno);
       },
       error: (err) => {
         console.error('Erro ao carregar aluno', err);
@@ -79,8 +78,7 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
       next: (res) => {
         const turmas = res as Turma[];
         this.turmas = Array.from(turmas);
-
-        console.log('Turmas carregadas:', this.turmas);
+        // console.log('Turmas carregadas:', this.turmas);
       },
       error: (err) => {
         console.error('Erro ao carregar turmas', err);

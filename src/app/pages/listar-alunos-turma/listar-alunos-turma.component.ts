@@ -77,8 +77,7 @@ export class ListarAlunosTurmaComponent implements OnInit {
     this.alunoService.todosAlunosDaTurma(turmaId).subscribe({
       next: (res) => {
         this.alunos = [...res] as AlunoResponse[];
-
-        console.log('Alunos carregados:', this.alunos);
+        // console.log('Alunos carregados:', this.alunos);
       },
       error: (err) => {
         if (err.status === 500) {
@@ -93,8 +92,7 @@ export class ListarAlunosTurmaComponent implements OnInit {
     this.turmasService.obterTurma(turmaId).subscribe({
       next: (res) => {
         this.turma = {...res} as Turma;
-
-        console.log('Turma carregada:', this.turma);
+        // console.log('Turma carregada:', this.turma);
       },
       error: (err) => {
         if (err.status === 500) {
