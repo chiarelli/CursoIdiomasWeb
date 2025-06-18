@@ -54,8 +54,12 @@
               </button>
 
             </span>
+          </td>          
+        </tr>
+        <tr *ngIf="paginate.content.length === 0">
+          <td colspan="5" class="text-center text-muted py-3">
+            Nenhum aluno cadastrado.
           </td>
-          
         </tr>
       </tbody>
     </table>

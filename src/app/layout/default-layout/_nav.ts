@@ -30,7 +30,7 @@ export const navItems: INavData[] = [
   {
     name: 'Turmas',
     url: '/turmas',
-    iconComponent: { name: 'cil-book' },
+    iconComponent: { name: 'cil-star' },
     children: [
       {
         name: 'Listar',
