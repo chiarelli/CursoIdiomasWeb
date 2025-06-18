@@ -1,11 +1,14 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { AlunoResponse } from 'src/app/dtos/aluno-response';
 import { Turma } from 'src/app/dtos/turma';
 import { AlunosService } from 'src/app/services/alunos.service';
 import { TurmasService } from 'src/app/services/turmas.service';
+import { environment as env } from 'src/environments/environment';
 import { CpfMaskPipe } from "../../utilities/text/cpf-mask.pipe";
+import { DesmatricularAlunoComponent } from '../desmatricular-aluno/desmatricular-aluno.component';
 
 @Component({
   selector: 'app-listar-turmas-aluno-matriculado',
@@ -13,15 +16,28 @@ import { CpfMaskPipe } from "../../utilities/text/cpf-mask.pipe";
     CommonModule,
     RouterModule,
     RouterLink,
-    CpfMaskPipe
+    CpfMaskPipe,
+    DesmatricularAlunoComponent
 ],
+animations: [
+    trigger('fadeOut', [
+      state('visible', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0, height: '0px', overflow: 'hidden', padding: '0' })),
+      transition('visible => hidden', [
+        animate(`${env.animationDeleteItemTime}ms ease-out`)
+      ])
+    ])
+  ],
   templateUrl: './listar-turmas-aluno-matriculado.component.html',
   styleUrl: './listar-turmas-aluno-matriculado.component.scss'
 })
 export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
 
+  @ViewChild(DesmatricularAlunoComponent) desmatricularAction?: DesmatricularAlunoComponent
+
   turmas: Turma[] = [];
-  aluno!: AlunoResponse;
+  aluno = {} as AlunoResponse;
+  animatingIds: Set<string> = new Set();
 
   constructor(
     private route: ActivatedRoute,
@@ -70,6 +86,23 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
         console.error('Erro ao carregar turmas', err);
       }
     })
+  }
+
+  openDesmatricularModal(turma: Turma) {
+    this.desmatricularAction?.execute(this.aluno, turma);
+  }
+
+  alunoDesmatriculado = (turma: Turma, aluno: AlunoResponse): void => {
+    this.animatingIds.add(turma.id);
+    
+    setTimeout(() => {
+      this.turmas = this.turmas.filter(t => t.id !== turma.id);
+      this.animatingIds.delete(turma.id);
+    }, env.animationDeleteItemTime);
+  }
+
+  getState(id: string): 'visible' | 'hidden' {
+    return this.animatingIds.has(id) ? 'hidden' : 'visible';
   }
 
 }
