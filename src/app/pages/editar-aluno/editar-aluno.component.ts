@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { FormControlDirective } from '@coreui/angular';
 import { NgxMaskPipe } from 'ngx-mask';
 import { ItemFeedbackComponent } from 'src/app/components/item-feedback/item-feedback.component';
 import { AlunoResponse, AlunoResponseNull } from 'src/app/dtos/aluno-response';
@@ -18,7 +19,8 @@ import { TurmasService } from 'src/app/services/turmas.service';
     FormsModule,
     ReactiveFormsModule,
     ItemFeedbackComponent,
-    NgxMaskPipe
+    NgxMaskPipe,
+    FormControlDirective
   ],
   templateUrl: './editar-aluno.component.html',
   styleUrl: './editar-aluno.component.scss'

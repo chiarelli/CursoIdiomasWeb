@@ -8,6 +8,7 @@ import { ErrosAPI } from 'src/app/interfaces';
 import { TurmasService } from 'src/app/services/turmas.service';
 import { ItemFeedbackComponent } from "../../components/item-feedback/item-feedback.component";
 import { RouterModule } from '@angular/router';
+import { FormControlDirective } from '@coreui/angular';
 
 @Component({
   selector: 'app-cadastrar-turma',
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
     ItemFeedbackComponent,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    FormControlDirective
   ],
   templateUrl: './cadastrar-turma.component.html',
   styleUrl: './cadastrar-turma.component.scss'

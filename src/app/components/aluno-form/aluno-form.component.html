@@ -9,7 +9,12 @@
         <!-- Nome -->
         <div class="mb-3">
           <label for="nome" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="nome" formControlName="nome" />
+          <input type="text" class="form-control" id="nome" 
+              formControlName="nome" 
+              cFormControl
+              [valid]="form.get('nome')?.valid" 
+              [class.is-invalid]="form.get('nome')?.invalid && !form.get('nome')?.pristine"
+              [class.is-valid]="form.get('nome')?.valid && !form.get('nome')?.pristine" />
           <div *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid">
             <small *ngIf="form.get('nome')?.hasError('required')" class="text-danger">Nome é obrigatório</small>
             <small *ngIf="form.get('nome')?.hasError('minlength')" class="text-danger">Mínimo 3 caracteres</small>
@@ -19,7 +24,12 @@
         <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label">E-mail</label>
-          <input type="email" class="form-control" id="email" formControlName="email" />
+          <input type="email" class="form-control" id="email" 
+              formControlName="email"
+              cFormControl
+              [valid]="form.get('email')?.valid"
+              [class.is-invalid]="form.get('email')?.invalid && !form.get('email')?.pristine"
+              [class.is-valid]="form.get('email')?.valid && !form.get('email')?.pristine" />
           <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
             <small *ngIf="form.get('email')?.hasError('required')" class="text-danger">E-mail é obrigatório</small>
             <small *ngIf="form.get('email')?.hasError('email')" class="text-danger">E-mail inválido</small>
@@ -29,7 +39,14 @@
         <!-- CPF -->
         <div class="mb-3">
           <label for="cpf" class="form-label">CPF</label>
-          <input type="text" class="form-control" id="cpf" formControlName="cpf" mask="000.000.000-00" placeholder="CPF" />
+          <input type="text" class="form-control" id="cpf" 
+              formControlName="cpf"
+              cFormControl
+              [valid]="form.get('cpf')?.valid"
+              [class.is-invalid]="form.get('cpf')?.invalid && !form.get('cpf')?.pristine"
+              [class.is-valid]="form.get('cpf')?.valid && !form.get('cpf')?.pristine" 
+              mask="000.000.000-00" 
+              placeholder="CPF" />
           <div *ngIf="form.get('cpf')?.touched && form.get('cpf')?.invalid">
             <small *ngIf="form.get('cpf')?.hasError('required')" class="text-danger">CPF é obrigatório</small>
             <small *ngIf="form.get('cpf')?.hasError('cpfInvalido')" class="text-danger">CPF inválido</small>
@@ -39,11 +56,19 @@
         <!-- Turmas -->
         <div class="mb-3">
           <label for="turmas" class="form-label">Turmas</label>
-          <select class="form-select" id="turmas" formControlName="turma_matricular_ids" multiple>
+          <select class="form-select" id="turmas" 
+              formControlName="turma_matricular_ids" 
+              [class.is-invalid]="form.get('turma_matricular_ids')?.invalid && !form.get('turma_matricular_ids')?.pristine"
+              [class.is-valid]="form.get('turma_matricular_ids')?.valid && !form.get('turma_matricular_ids')?.pristine"
+              cSelect
+              multiple>
             <option *ngFor="let turma of turmas" [value]="turma.id">
               Número: {{ turma.numero_turma }} | Ano: {{ turma.ano_letivo }}
             </option>
           </select>
+          <div *ngIf="form.get('turma_matricular_ids')?.dirty">
+            <small *ngIf="form.get('turma_matricular_ids')?.hasError('minSelected')" class="text-danger">Selecione ao menos uma turma</small>
+          </div>
         </div>
 
         <!-- Botão -->

@@ -9,18 +9,31 @@
         <!-- Número da Turma -->
         <div class="mb-3">
           <label for="numero_turma" class="form-label">Número da Turma</label>
-          <input type="number" class="form-control" id="numero_turma" formControlName="numero_turma" />
-          <div *ngIf="form.get('numero_turma')?.touched && form.get('numero_turma')?.invalid">
+          <input type="number" class="form-control" id="numero_turma" 
+              formControlName="numero_turma"
+              cFormControl
+              [valid]="form.get('numero_turma')?.valid"
+              [class.is-invalid]="form.get('numero_turma')?.dirty && form.get('numero_turma')?.invalid"
+              [class.is-valid]="form.get('numero_turma')?.valid && form.get('numero_turma')?.dirty" />
+
+          <div *ngIf="!form.get('numero_turma')?.pristine && form.get('numero_turma')?.invalid">
             <small *ngIf="form.get('numero_turma')?.hasError('required')" class="text-danger">Número da turma é obrigatório</small>
             <small *ngIf="form.get('numero_turma')?.hasError('min')" class="text-danger">Deve ser maior ou igual a 1</small>
           </div>
+
         </div>
 
         <!-- Ano Letivo -->
         <div class="mb-3">
           <label for="ano_letivo" class="form-label">Ano Letivo</label>
-          <input type="number" class="form-control" id="ano_letivo" formControlName="ano_letivo" />
-          <div *ngIf="form.get('ano_letivo')?.touched && form.get('ano_letivo')?.invalid">
+          <input type="number" class="form-control" id="ano_letivo" 
+              formControlName="ano_letivo"
+              cFormControl
+              [valid]="form.get('ano_letivo')?.valid"
+              [class.is-invalid]="form.get('ano_letivo')?.invalid && form.get('ano_letivo')?.dirty"
+              [class.is-valid]="form.get('ano_letivo')?.valid && form.get('ano_letivo')?.dirty" />
+
+          <div *ngIf="!form.get('ano_letivo')?.pristine && form.get('ano_letivo')?.invalid">
             <small *ngIf="form.get('ano_letivo')?.hasError('required')" class="text-danger">Ano letivo é obrigatório</small>
             <small *ngIf="form.get('ano_letivo')?.hasError('min')" class="text-danger">Deve ser maior ou igual a 1900</small>
             <small *ngIf="form.get('ano_letivo')?.hasError('max')" class="text-danger">Deve ser menor ou igual a 2399</small>

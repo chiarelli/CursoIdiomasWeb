@@ -9,6 +9,7 @@ import { Turma } from 'src/app/dtos/turma';
 import { cpfValidator } from 'src/app/validators/cpf-validator';
 import { minSelectedItems } from 'src/app/validators/min-selected-items';
 import { ItemFeedbackComponent } from "../item-feedback/item-feedback.component";
+import { FormControlDirective } from '@coreui/angular';
 
 @Component({
   selector: 'app-aluno-form',
@@ -17,7 +18,8 @@ import { ItemFeedbackComponent } from "../item-feedback/item-feedback.component"
     ReactiveFormsModule,
     FormsModule,
     NgxMaskDirective,
-    ItemFeedbackComponent
+    ItemFeedbackComponent,
+    FormControlDirective
 ],
   templateUrl: './aluno-form.component.html',
   styleUrl: './aluno-form.component.scss'

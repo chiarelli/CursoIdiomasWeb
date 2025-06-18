@@ -9,7 +9,10 @@
         <!-- Nome -->
         <div class="mb-3">
           <label for="nome" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="nome" formControlName="nome" />
+          <input type="text" class="form-control" id="nome" 
+              formControlName="nome" 
+              [valid]="form.get('nome')?.valid" 
+              cFormControl />
           <div *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid">
             <small *ngIf="form.get('nome')?.hasError('required')" class="text-danger">Nome é obrigatório</small>
             <small *ngIf="form.get('nome')?.hasError('minlength')" class="text-danger">Mínimo 3 caracteres</small>
@@ -19,7 +22,10 @@
         <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label">E-mail</label>
-          <input type="email" class="form-control" id="email" formControlName="email" />
+          <input type="email" class="form-control" id="email" 
+              formControlName="email" 
+              [valid]="form.get('email')?.valid" 
+              cFormControl />
           <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
             <small *ngIf="form.get('email')?.hasError('required')" class="text-danger">E-mail é obrigatório</small>
             <small *ngIf="form.get('email')?.hasError('email')" class="text-danger">E-mail inválido</small>
