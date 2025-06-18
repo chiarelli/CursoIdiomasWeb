@@ -1,0 +1,24 @@
+<c-modal #desmatricularModal backdrop="static" id="desmatricularAlunoModal" [(visible)]="isVisible">
+  <c-modal-header class="alert alert-warning">
+    <h5 cModalTitle>Confirmar Desmatrícula</h5>
+    <button [cModalToggle]="desmatricularModal.id" cButtonClose></button>
+  </c-modal-header>
+
+  <c-modal-body>
+    <p>Tem certeza de que deseja desmatricular o aluno <strong>{{ aluno.nome }}</strong> da turma 
+      <strong>{{ turma.numero_turma }}</strong> ({{ turma.ano_letivo }})?</p>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button [cModalToggle]="desmatricularModal.id" cButton color="secondary">
+      Cancelar
+    </button>
+    <button 
+      class="btn btn-outline-danger"
+      (click)="desmatricularSubmit()"
+    >
+      Confirmar
+    </button>
+  </c-modal-footer>
+</c-modal>
+
