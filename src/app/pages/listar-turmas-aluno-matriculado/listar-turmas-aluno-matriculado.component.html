@@ -7,7 +7,7 @@
     <div class="card-body">
       <p><strong>Nome:</strong> {{ aluno.nome }}</p>
       <p><strong>E-mail:</strong> {{ aluno.email }}</p>
-      <p><strong>CPF:</strong> {{ aluno.cpf }}</p>
+      <p><strong>CPF:</strong> {{ aluno.cpf | cpfMask }}</p>
 
       <div class="d-flex justify-content-end mt-3">
         <a class="btn btn-sm btn-outline-primary" [routerLink]="['/alunos/editar', aluno.id]">

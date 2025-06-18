@@ -5,14 +5,16 @@ import { AlunoResponse } from 'src/app/dtos/aluno-response';
 import { Turma } from 'src/app/dtos/turma';
 import { AlunosService } from 'src/app/services/alunos.service';
 import { TurmasService } from 'src/app/services/turmas.service';
+import { CpfMaskPipe } from "../../utilities/text/cpf-mask.pipe";
 
 @Component({
   selector: 'app-listar-turmas-aluno-matriculado',
   imports: [
     CommonModule,
     RouterModule,
-    RouterLink
-  ],
+    RouterLink,
+    CpfMaskPipe
+],
   templateUrl: './listar-turmas-aluno-matriculado.component.html',
   styleUrl: './listar-turmas-aluno-matriculado.component.scss'
 })
