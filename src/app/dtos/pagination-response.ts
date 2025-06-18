@@ -22,3 +22,9 @@ export class PaginatedResponse<T> {
     this.content = content;
   }
 }
+
+export class PaginatedResponseNull extends PaginatedResponse<any> {
+  constructor() {
+    super(1, 0, 0, 0, 0, []);
+  }
+}
