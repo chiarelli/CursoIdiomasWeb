@@ -5,6 +5,7 @@ import { environment as env } from '../../environments/environment';
 import { PaginatedResponse } from '../dtos/pagination-response';
 import { Turma } from '../dtos/turma';
 import { TurmaCadastrar } from '../dtos/turma-cadastrar';
+import { TurmaEditar } from '../dtos/turma -editar';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,14 @@ export class TurmasService {
 
   cadastrarTurma(turma: TurmaCadastrar): Observable<Turma> {
     return this.ngHttp.post<Turma>(`${env.baseUrl}/turmas`, turma);
+  }
+
+  obterTurma(guid: string): Observable<Turma> {
+    return this.ngHttp.get<Turma>(`${env.baseUrl}/turmas/${guid}`);
+  }
+
+  editarTurma(guid: string, payload: TurmaEditar): Observable<Turma> {
+    return this.ngHttp.put<Turma>(`${env.baseUrl}/turmas/${guid}`, payload);
   }
 
 }
