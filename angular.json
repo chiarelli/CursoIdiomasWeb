@@ -38,7 +38,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/scss/styles.scss"
+              "src/scss/styles.scss",
+              "https://unpkg.com/@coreui/icons/css/all.min.css"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [],

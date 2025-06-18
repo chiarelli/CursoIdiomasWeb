@@ -28,7 +28,9 @@
           <td>{{ turma.ano_letivo }}</td>
           <td>
             <div *ngIf="turma.alunos_matriculados.length > 0">
-              <a [routerLink]="['/alunos/turma', turma.id]">
+              <a [routerLink]="['/alunos/turma', turma.id]"
+              cPopover="Todos os alunos matriculados nesta turma"
+              cPopoverPlacement="top">
                 {{ turma.alunos_matriculados.length || 0 }}
               </a>
             </div>
@@ -37,8 +39,8 @@
             </div>
           </td>
           <td class="text-end">
-            <a [routerLink]="['/turmas/editar', turma.id]" class="btn btn-sm btn-warning me-1">
-              <i class="cil-pencil"></i> Editar
+            <a [routerLink]="['/turmas/editar', turma.id]" class="btn btn-sm btn-outline-info me-1">
+              <i class="cil-pencil"></i>
             </a>
             
             <span
@@ -46,10 +48,10 @@
               [cPopoverTrigger]="turma.alunos_matriculados.length > 0 ? 'hover' : 'focusin'"
               cPopoverPlacement="left"
             >
-              <button class="btn btn-sm btn-danger" 
+              <button class="btn btn-sm btn-outline-danger" 
                 [disabled]="turma.alunos_matriculados.length > 0" 
                 (click)="openDeleteModal(turma)">
-                <i class="cil-trash"></i> Excluir
+                <i class="cil-trash"></i>
               </button>
             </span>
           </td>

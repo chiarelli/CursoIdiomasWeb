@@ -39,18 +39,18 @@
             </div>
           </td>
           <td class="text-end">
-            <a [routerLink]="['../editar', aluno.id]" class="btn btn-sm btn-warning me-2">
-              Editar
+            <a [routerLink]="['../editar', aluno.id]" class="btn btn-sm btn-outline-info me-2">
+              <i class="cil-pencil"></i>
             </a>
             <span
               cPopover="Não pode ser excluido, se o aluno estiver matriculado em mais de uma turma"
               [cPopoverTrigger]="aluno.turmas_matriculadas.length > 1 ? 'hover' : 'focusin'"
               cPopoverPlacement="left">
 
-              <button cButton class="btn btn-sm btn-danger"
+              <button class="btn btn-sm btn-outline-danger"
                   [disabled]="aluno.turmas_matriculadas.length > 1"
                   (click)="openDeleteModal(aluno)">
-                Excluir
+                <i class="cil-trash"></i>
               </button>
 
             </span>

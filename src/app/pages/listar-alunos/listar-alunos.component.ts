@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { PopoverDirective } from '@coreui/angular';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { ErrosAPI } from 'src/app/interfaces';
 import { environment as env } from '../../../environments/environment';
@@ -12,7 +13,6 @@ import { AlunoResponse } from '../../dtos/aluno-response';
 import { PaginatedResponse } from '../../dtos/pagination-response';
 import { AlunosService } from '../../services/alunos.service';
 import { CpfMaskPipe } from '../../utilities/text/cpf-mask.pipe';
-import { ButtonDirective, PopoverDirective } from '@coreui/angular';
 
 @Component({
   selector: 'app-listar-alunos',
@@ -21,8 +21,7 @@ import { ButtonDirective, PopoverDirective } from '@coreui/angular';
     CpfMaskPipe,
     RouterModule,
     ModalExclusaoItemComponent,
-    PaginateComponent, 
-    ButtonDirective, 
+    PaginateComponent,
     PopoverDirective,
 ],
   animations: [
