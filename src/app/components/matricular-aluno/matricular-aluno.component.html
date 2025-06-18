@@ -22,13 +22,27 @@
             </p>
           </div>
           <div class="mt-auto text-end">
-            <button
-              class="btn btn-sm btn-outline-success"
-              [disabled]="turma.alunos_matriculados.length >= 5"
-              (click)="execute(turma)"
-            >
-              Matricular
-            </button>
+
+            <span *ngIf="turma.alunos_matriculados.length < 5; else elseMatricular"
+              cPopover="Matricular o aluno nesta turma"
+              cPopoverPlacement="top">
+              <button class="btn btn-sm btn-outline-success"
+                (click)="execute(turma)">
+                Matricular
+              </button>
+            </span>
+            
+            <ng-template #elseMatricular>
+              <span
+                cPopover="Esta turma está lotada"
+                cPopoverPlacement="top">
+                <button class="btn btn-sm btn-outline-dark"
+                    [disabled]="true">
+                      Matricular
+                </button>
+              </span>
+            </ng-template>
+            
           </div>
         </div>
       </div>

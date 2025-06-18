@@ -26,11 +26,17 @@
           <p class="card-text"><strong>CPF:</strong> {{ aluno.cpf | cpfMask }}</p>
         </div>
         <div class="card-footer d-flex justify-content-between">
-          <a class="btn btn-sm btn-outline-primary" [routerLink]="['/alunos/editar', aluno.id]">
-            Editar
+          <a class="btn btn-sm btn-outline-primary" 
+            [routerLink]="['/alunos/editar', aluno.id]"
+            cPopover="Editar dados do aluno"
+            cPopoverPlacement="top">
+              Editar
           </a>
-          <a class="btn btn-sm btn-outline-danger" (click)="openDesmatricularModal(aluno)">
-            Desmatricular
+          <a class="btn btn-sm btn-outline-danger" 
+            (click)="openDesmatricularModal(aluno)"
+            cPopover="Desmatricular o aluno desta turma"
+            cPopoverPlacement="top">
+              Desmatricular
           </a>
         </div>
       </div>

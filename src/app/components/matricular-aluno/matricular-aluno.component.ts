@@ -1,19 +1,21 @@
-import { SecretariaService } from './../../services/secretaria.service';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { PopoverDirective } from '@coreui/angular';
+import { AlunoResponse, AlunoResponseNull } from 'src/app/dtos/aluno-response';
 import { PaginatedResponse } from 'src/app/dtos/pagination-response';
 import { Turma } from 'src/app/dtos/turma';
 import { TurmasService } from 'src/app/services/turmas.service';
+import { environment as env } from 'src/environments/environment';
 import { PaginateComponent } from "../paginate/paginate.component";
 import { PaginatedResponseNull } from './../../dtos/pagination-response';
-import { environment as env } from 'src/environments/environment';
-import { AlunoResponse, AlunoResponseNull } from 'src/app/dtos/aluno-response';
+import { SecretariaService } from './../../services/secretaria.service';
 
 @Component({
   selector: 'app-matricular-aluno',
   imports: [
     CommonModule,
-    PaginateComponent
+    PaginateComponent,
+    PopoverDirective
 ],
   templateUrl: './matricular-aluno.component.html',
   styleUrl: './matricular-aluno.component.scss'

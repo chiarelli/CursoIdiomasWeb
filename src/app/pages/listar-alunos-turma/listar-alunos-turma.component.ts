@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { PopoverDirective } from '@coreui/angular';
 import { AlunoResponse } from 'src/app/dtos/aluno-response';
 import { Turma } from 'src/app/dtos/turma';
 import { AlunosService } from 'src/app/services/alunos.service';
@@ -16,7 +17,8 @@ import { DesmatricularAlunoComponent } from "../desmatricular-aluno/desmatricula
     CommonModule,
     RouterModule,
     CpfMaskPipe,
-    DesmatricularAlunoComponent
+    DesmatricularAlunoComponent,
+    PopoverDirective
 ],
   animations: [
     trigger('fadeOut', [
