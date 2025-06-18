@@ -14,4 +14,9 @@ export class SecretariaService {
     const url = `${env.baseUrl}/secretaria/desmatricular/turma/${turmaId}/aluno/${alunoId}`;
     return this.ngHttp.delete<void>(url);
   }
+
+  matricularAluno(turmaId: string, alunoId: string): Observable<void> {
+    const url = `${env.baseUrl}/secretaria/matricular/turma/${turmaId}/aluno/${alunoId}`;
+    return this.ngHttp.post<void>(url, null);
+  }
 }
