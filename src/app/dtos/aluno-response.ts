@@ -21,3 +21,9 @@ export class AlunoResponse {
     this.turmas_matriculadas = turmas_matriculadas;
   }
 }
+
+export class AlunoResponseNull extends AlunoResponse {
+  constructor() {
+    super("", "", "", "", []);
+  }
+}

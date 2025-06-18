@@ -2,7 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
-import { AlunoResponse } from 'src/app/dtos/aluno-response';
+import { AlunoResponse, AlunoResponseNull } from 'src/app/dtos/aluno-response';
 import { Turma } from 'src/app/dtos/turma';
 import { AlunosService } from 'src/app/services/alunos.service';
 import { TurmasService } from 'src/app/services/turmas.service';
@@ -36,7 +36,7 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
   @ViewChild(DesmatricularAlunoComponent) desmatricularAction?: DesmatricularAlunoComponent
 
   turmas: Turma[] = [];
-  aluno = {} as AlunoResponse;
+  aluno = new AlunoResponseNull();
   animatingIds: Set<string> = new Set();
 
   constructor(
