@@ -9,6 +9,7 @@ import { TurmasService } from 'src/app/services/turmas.service';
 import { environment as env } from 'src/environments/environment';
 import { CpfMaskPipe } from "../../utilities/text/cpf-mask.pipe";
 import { DesmatricularAlunoComponent } from '../desmatricular-aluno/desmatricular-aluno.component';
+import { MatricularAlunoComponent, ResultadoMatricula } from "../../components/matricular-aluno/matricular-aluno.component";
 
 @Component({
   selector: 'app-listar-turmas-aluno-matriculado',
@@ -17,7 +18,8 @@ import { DesmatricularAlunoComponent } from '../desmatricular-aluno/desmatricula
     RouterModule,
     RouterLink,
     CpfMaskPipe,
-    DesmatricularAlunoComponent
+    DesmatricularAlunoComponent,
+    MatricularAlunoComponent
 ],
 animations: [
     trigger('fadeOut', [
@@ -35,7 +37,8 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
 
   @ViewChild(DesmatricularAlunoComponent) desmatricularAction?: DesmatricularAlunoComponent
 
-  turmas: Turma[] = [];
+  turmasMatriculado: Turma[] = [];
+  
   aluno = new AlunoResponseNull();
   animatingIds: Set<string> = new Set();
 
@@ -57,7 +60,6 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
       this.#carregarAluno(alunoId),
       this.#carregarTurmas(alunoId)
     ]);
-    
   }
 
   async #carregarAluno(alunoId: string): Promise<void> {
@@ -77,7 +79,7 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
     this.turmasService.turmasAlunoMatriculado(alunoId).subscribe({
       next: (res) => {
         const turmas = res as Turma[];
-        this.turmas = Array.from(turmas);
+        this.turmasMatriculado = Array.from(turmas);
         // console.log('Turmas carregadas:', this.turmas);
       },
       error: (err) => {
@@ -94,9 +96,14 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
     this.animatingIds.add(turma.id);
     
     setTimeout(() => {
-      this.turmas = this.turmas.filter(t => t.id !== turma.id);
+      this.turmasMatriculado = this.turmasMatriculado.filter(t => t.id !== turma.id);
       this.animatingIds.delete(turma.id);
     }, env.animationDeleteItemTime);
+  }
+
+  handleMatriculaFeedback($event: ResultadoMatricula) {
+    if($event.isSuccess())
+      this.#carregarTurmas(this.aluno.id);
   }
 
   getState(id: string): 'visible' | 'hidden' {

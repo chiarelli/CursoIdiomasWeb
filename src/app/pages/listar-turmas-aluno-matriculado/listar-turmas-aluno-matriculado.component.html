@@ -18,8 +18,8 @@
   </div>
 
   <!-- Lista de turmas em cards -->
-  <div class="row" *ngIf="turmas.length > 0; else nenhumTurma">
-    <div class="col-md-6 mb-3" *ngFor="let turma of turmas" [@fadeOut]="getState(turma.id)">
+  <div class="row" *ngIf="turmasMatriculado.length > 0; else nenhumTurma">
+    <div class="col-md-6 mb-3" *ngFor="let turma of turmasMatriculado" [@fadeOut]="getState(turma.id)">
       <div class="card shadow-sm h-100 d-flex flex-column">
         <div class="card-body d-flex flex-column justify-content-between">
           <div>
@@ -29,7 +29,7 @@
               <strong>Total de Alunos:</strong> {{ turma.alunos_matriculados.length || 0 }}
             </p>
           </div>
-          <div class="mt-auto text-end" [hidden]="turmas.length == 1">
+          <div class="mt-auto text-end" [hidden]="turmasMatriculado.length == 1">
             <button class="btn btn-sm btn-outline-danger" type="button"
               (click)="openDesmatricularModal(turma)">
               Desmatricular
@@ -46,6 +46,11 @@
       Este aluno não está matriculado em nenhuma turma.
     </div>
   </ng-template>
+
+  <app-matricular-aluno 
+    [turmasMatriculado]="turmasMatriculado" 
+    [aluno]="aluno"
+    (feedback)="handleMatriculaFeedback($event)" />
 </div>
 
 <app-desmatricular-aluno [resultCallback]="alunoDesmatriculado" />
