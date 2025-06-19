@@ -1,0 +1,48 @@
+services:
+  frontend:
+    build:
+      context: ../..
+      dockerfile: docker/self-contained/Dockerfile.frontend
+    ports:
+      - "4200:4200" 
+    depends_on:
+      - sqlserver
+      - apibackend
+    environment:
+      - DATABASE_HOST=mssql
+      - DATABASE_PORT=1433
+      - DATABASE_USER=SA
+      - DATABASE_PASSWORD=YourStrong!Passw0rd
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    # volumes:
+    #   - sqlserver_data:/var/opt/mssql
+    restart: unless-stopped
+
+  apibackend:
+    build:
+      context: ../..                          
+      dockerfile: docker/self-contained/Dockerfile.backend
+    environment:
+      SPRING_APPLICATION_JSON: >
+        {
+          "spring.datasource.url": "jdbc:sqlserver://sqlserver:1433;encrypt=false",
+          "spring.datasource.username": "SA",
+          "spring.datasource.password": "YourStrong!Passw0rd",
+          "spring.jpa.show-sql": false,
+          "spring.jpa.properties.hibernate.format_sql": false
+        }
+    ports:
+      - "8080:8080"
+    restart: unless-stopped  
+    depends_on:
+      - sqlserver
+
+# volumes:
+#   sqlserver_data:

@@ -16,7 +16,8 @@
     "dev": "ng serve --host 0.0.0.0 --disable-host-check",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "self-contained": "sh -c 'docker compose -f docker/self-contained/docker-compose.yml \"$@\" || docker-compose -f docker/self-contained/docker-compose.yml \"$@\"' --"
   },
   "private": true,
   "dependencies": {
