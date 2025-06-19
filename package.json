@@ -17,7 +17,7 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "self-contained": "./scripts/docker-compose-fallback.sh docker/self-contained/docker-compose.yml"
+    "self-contained": "docker compose -f docker/self-contained/docker-compose.yml"
   },
   "private": true,
   "dependencies": {
