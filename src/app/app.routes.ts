@@ -66,6 +66,8 @@ export const routes: Routes = [
       */
     ]
   },
+
+  /*
   {
     path: '404',
     loadComponent: () => import('./views/pages/page404/page404.component').then(m => m.Page404Component),
@@ -94,5 +96,6 @@ export const routes: Routes = [
       title: 'Register Page'
     }
   },
+  */
   { path: '**', redirectTo: 'dashboard' }
 ];
