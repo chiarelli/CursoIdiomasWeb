@@ -1,5 +1,5 @@
 {
-  "name": "coreui-free-angular-admin-template",
+  "name": "curso-idiomas-admin-template",
   "version": "5.4.5",
   "copyright": "Copyright 2024 creativeLabs Łukasz Holeczek",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "ng": "ng",
     "start": "ng serve -o",
     "dev": "ng serve --host 0.0.0.0 --disable-host-check",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -66,10 +66,10 @@
     "npm": ">= 9"
   },
   "bugs": {
-    "url": "https://github.com/coreui/coreui-free-angular-admin-template/issues"
+    "url": "https://github.com/coreui/curso-idiomas-admin-template/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coreui/coreui-free-angular-admin-template.git"
+    "url": "git+https://github.com/coreui/curso-idiomas-admin-template.git"
   }
 }
