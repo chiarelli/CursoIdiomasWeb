@@ -6,8 +6,7 @@ services:
     volumes:
       - ..:/workspace:cached
     ports:
-      - "4200:4200"
-    command: sleep infinity  
+      - "4200:4200" 
     depends_on:
       - sqlserver
       - apibackend
@@ -16,6 +15,7 @@ services:
       - DATABASE_PORT=1433
       - DATABASE_USER=SA
       - DATABASE_PASSWORD=YourStrong!Passw0rd
+    command: npm run dev
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest

@@ -17,6 +17,8 @@ RUN npm install -g npm@11.4.0 \
   && npm install -g @angular/cli@19.2.13 \
   && npm cache clean --force
 
+ENV NG_CLI_ANALYTICS=false
 USER $USERNAME
 WORKDIR /workspace
-CMD ["sh", "/start.sh"]
+
+ENTRYPOINT ["sh", "/start.sh"]
