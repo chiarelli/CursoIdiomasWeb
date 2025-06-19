@@ -36,5 +36,5 @@
   },
 
   // Comando opcional após o build
-  "postCreateCommand": "echo 'Use \"ng new meu-app --standalone\" para iniciar seu projeto 😉'"
+  "postCreateCommand": "npm run dev"
 }
