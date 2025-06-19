@@ -1,6 +1,7 @@
 import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
+  /*
   {
     name: 'Dashboard',
     url: '/dashboard',
@@ -10,6 +11,24 @@ export const navItems: INavData[] = [
       text: 'NEW'
     }
   },
+  */
+
+  {
+    title: true,
+    name: 'Alunos',
+  },
+  {
+    name: 'Listar Alunos',
+    url: '/alunos/listagem',
+    icon: 'nav-icon-bullet'
+  },
+  {
+    name: 'Cadastrar Aluno',
+    url: '/alunos/cadastrar',
+    icon: 'nav-icon-bullet'
+  },
+
+  /*
   {
     name: 'Alunos',
     url: '/alunos',
@@ -27,6 +46,24 @@ export const navItems: INavData[] = [
       }
     ]
   },
+  */
+
+  {
+    title: true,
+    name: 'Turmas',
+  },
+  {
+    name: 'Listar Turmas',
+    url: '/turmas/listagem',
+    icon: 'nav-icon-bullet'
+  },
+  {
+    name: 'Cadastrar Turma',
+    url: '/turmas/cadastrar',
+    icon: 'nav-icon-bullet'
+  },
+  
+  /*
   {
     name: 'Turmas',
     url: '/turmas',
@@ -44,6 +81,9 @@ export const navItems: INavData[] = [
       }
     ]
   },
+  */
+
+  /*
   {
     title: true,
     name: 'Theme'
@@ -323,4 +363,5 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-description' },
     attributes: { target: '_blank' }
   }
+    */
 ];

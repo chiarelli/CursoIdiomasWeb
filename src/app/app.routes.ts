@@ -2,11 +2,11 @@ import { Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './layout';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'dashboard',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
     component: DefaultLayoutComponent,
@@ -22,6 +22,7 @@ export const routes: Routes = [
         path: 'turmas',
         loadChildren: () => import('./pages/turmas-routes').then((m) => m.routes)
       },
+      /*
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
@@ -62,6 +63,7 @@ export const routes: Routes = [
         path: 'pages',
         loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
       }
+      */
     ]
   },
   {
