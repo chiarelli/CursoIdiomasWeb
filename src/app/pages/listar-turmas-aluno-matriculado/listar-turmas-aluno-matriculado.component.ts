@@ -40,7 +40,7 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
   turmasMatriculado: Turma[] = [];
   
   aluno = new AlunoResponseNull();
-  animatingIds: Set<string> = new Set();
+  turmasMatricIds: Set<string> = new Set();
 
   constructor(
     private route: ActivatedRoute,
@@ -93,11 +93,11 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
   }
 
   alunoDesmatriculado = (turma: Turma, aluno: AlunoResponse): void => {
-    this.animatingIds.add(turma.id);
+    this.turmasMatricIds.add(turma.id);
     
     setTimeout(() => {
       this.turmasMatriculado = this.turmasMatriculado.filter(t => t.id !== turma.id);
-      this.animatingIds.delete(turma.id);
+      this.turmasMatricIds.delete(turma.id);
     }, env.animationDeleteItemTime);
   }
 
@@ -106,8 +106,8 @@ export class ListarTurmasAlunoMatriculadoComponent implements OnInit {
       this.#carregarTurmas(this.aluno.id);
   }
 
-  getState(id: string): 'visible' | 'hidden' {
-    return this.animatingIds.has(id) ? 'hidden' : 'visible';
+  getTurmasMatricState(id: string): 'visible' | 'hidden' {
+    return this.turmasMatricIds.has(id) ? 'hidden' : 'visible';
   }
 
 }
