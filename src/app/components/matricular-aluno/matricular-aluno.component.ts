@@ -68,10 +68,12 @@ export class MatricularAlunoComponent implements OnChanges {
   }
 
   async carregarTurmasDisponiveis(page: number = this.turmasDisponiveis.page, size: number = this.turmasDisponiveis.size): Promise<PaginatedResponse<Turma>> {
+    if(page !== 1 && this.turmasDisponiveis.length == 1) {
+      page--;
+    }
+    
     const turmasMatriculadasIds = this.turmasMatriculado.map(turma => turma.id);
     const self = this;
-
-    console.log('Turmas matriculadas:', self.turmasMatriculado);
 
     return new Promise<PaginatedResponse<Turma>>((resolve, reject) => {
 
@@ -83,7 +85,7 @@ export class MatricularAlunoComponent implements OnChanges {
             !turmasMatriculadasIds.includes(turma.id)
           );
   
-          self.turmasDisponiveis = new PaginatedResponse<Turma>(
+          const turmasDisponiveis = new PaginatedResponse<Turma>(
             turmasPage.page,
             turmasPage.size,
             turmasNaoMatriculadas.length,
@@ -92,7 +94,12 @@ export class MatricularAlunoComponent implements OnChanges {
             turmasNaoMatriculadas
           );
 
-          console.log('Turmas carregadas:', self.turmasDisponiveis);
+          if(turmasDisponiveis.content.length !== 0) {
+            self.turmasDisponiveis = turmasDisponiveis;
+          } else {
+            self.turmasDisponiveis.total_pages--;
+            self.turmasDisponiveis.page--;
+          }
 
           resolve(self.turmasDisponiveis);
         },
