@@ -11,10 +11,14 @@ services:
       - sqlserver
       - apibackend
     environment:
+      # DATABASE
       - DATABASE_HOST=mssql
       - DATABASE_PORT=1433
       - DATABASE_USER=SA
       - DATABASE_PASSWORD=YourStrong!Passw0rd
+      # GIT
+      - GIT_USER_NAME=Raphael Mathias
+      - GIT_USER_EMAIL=oi.sucesso@gmail.com
     command: npm run dev
 
   sqlserver:

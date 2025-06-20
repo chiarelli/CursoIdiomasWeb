@@ -20,11 +20,11 @@ RUN npm install -g npm@11.4.0 \
 ENV NG_CLI_ANALYTICS=false
 
 # Copia script de inicialização e dá permissão
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+COPY dev-start.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Define usuário padrão e diretório de trabalho
 USER $USERNAME
 WORKDIR /workspace
 
-ENTRYPOINT ["sh", "/start.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
