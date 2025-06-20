@@ -10,7 +10,9 @@
   </div>
 
   <div class="row" *ngIf="turmasDisponiveis.length > 0; else nenhumaDisponivel">
-    <div class="col-md-6 mb-3" *ngFor="let turma of turmasDisponiveis.content">
+    <div class="col-md-6 mb-3" 
+        *ngFor="let turma of turmasDisponiveis.content" 
+        [@fadeOut]="getState(turma.id)">
       <div class="card h-100">
         <div class="card-body d-flex flex-column justify-content-between">
           <div>

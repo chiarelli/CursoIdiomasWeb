@@ -9,6 +9,7 @@ import { environment as env } from 'src/environments/environment';
 import { PaginateComponent } from "../paginate/paginate.component";
 import { PaginatedResponseNull } from './../../dtos/pagination-response';
 import { SecretariaService } from './../../services/secretaria.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-matricular-aluno',
@@ -16,7 +17,16 @@ import { SecretariaService } from './../../services/secretaria.service';
     CommonModule,
     PaginateComponent,
     PopoverDirective
-],
+  ],
+  animations: [
+    trigger('fadeOut', [
+      state('visible', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0, height: '0px', overflow: 'hidden', padding: '0' })),
+      transition('visible => hidden', [
+        animate(`${env.animationDeleteItemTime}ms ease-out`)
+      ])
+    ])
+  ],
   templateUrl: './matricular-aluno.component.html',
   styleUrl: './matricular-aluno.component.scss'
 })
@@ -28,6 +38,8 @@ export class MatricularAlunoComponent implements OnChanges {
   @Output() feedback = new EventEmitter<ResultadoMatricula>();
 
   turmasDisponiveis: PaginatedResponse<Turma> = new PaginatedResponseNull();
+  turmasDisponiveisIds: Set<string> = new Set();
+  turma?: Turma;
 
   constructor(
     private turmasService: TurmasService,
@@ -40,7 +52,13 @@ export class MatricularAlunoComponent implements OnChanges {
     const self = this;
     this.secretariaService.matricularAluno(tuma.id, this.aluno.id).subscribe({
       next(value) {
-        self.feedback.emit(ResultadoMatricula.sucesso(tuma, self.aluno));
+        self.turmasDisponiveisIds.add(tuma.id);
+
+        setTimeout(() => {
+          self.turmasDisponiveisIds.delete(tuma.id);
+          self.feedback.emit(ResultadoMatricula.sucesso(tuma, self.aluno));
+        }, env.animationDeleteItemTime);
+
       },
       error(err) {
         self.feedback.emit(ResultadoMatricula.falha(err));
@@ -92,6 +110,10 @@ export class MatricularAlunoComponent implements OnChanges {
     if (changes['turmasMatriculado']) {
       this.carregarTurmasDisponiveis();
     }
+  }
+
+  getState(id: string): 'visible' | 'hidden' {
+    return this.turmasDisponiveisIds.has(id) ? 'hidden' : 'visible';
   }
 
 }
