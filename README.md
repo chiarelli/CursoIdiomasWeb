@@ -44,7 +44,7 @@ cd CursoIdiomasWeb
 Este comando **executa o frontend Angular e a API backend Spring Boot** (caso backend esteja incluído no compose):
 
 ```bash
-npm run self-contained
+npm run self-contained -- up -d
 ```
 
 > Este comando usa o arquivo `docker/docker-compose.yml` para subir a aplicação em ambiente de desenvolvimento.
