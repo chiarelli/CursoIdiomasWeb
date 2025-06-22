@@ -33,8 +33,5 @@
         "johnpapa.Angular2"
       ]
     }
-  },
-
-  // Comando opcional após o build
-  "postCreateCommand": "npm run dev"
+  }
 }
