@@ -41,11 +41,14 @@ cd CursoIdiomasWeb
 
 ### 2. Rodar via Docker (modo self-contained)
 
-Este comando **executa o frontend Angular e a API backend Spring Boot** (caso backend esteja incluído no compose):
+Escolha uma das opções abaixo para **executar o frontend Angular e a API backend Spring Boot**.
 
+Opção 1:
 ```bash
 npm run self-contained -- up -d
-# ou
+```
+Opção 2:
+```bash 
 docker compose -f docker/self-contained/docker-compose.yml up -d
 ```
 
@@ -68,6 +71,7 @@ Se você deseja utilizar um ambiente isolado via Dev Containers, siga os passos 
 ### 1. Requisitos
 
 * Docker instalado
+* npm e node
 * VSCode
 * Extensão [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
@@ -76,6 +80,7 @@ Se você deseja utilizar um ambiente isolado via Dev Containers, siga os passos 
 ```bash
 git clone https://github.com/chiarelli/CursoIdiomasWeb
 cd CursoIdiomasWeb
+npm install
 code .
 ```
 
@@ -84,15 +89,6 @@ code .
 Clique em **“Reopen in Container”** quando o VSCode sugerir.
 
 > O ambiente já está pré-configurado com Node.js e Angular CLI.
-
-### 4. Rodar o projeto
-
-No terminal do Dev Container:
-
-```bash
-npm install
-npm run dev
-```
 
 ---
 
