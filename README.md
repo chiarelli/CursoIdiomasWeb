@@ -45,6 +45,8 @@ Este comando **executa o frontend Angular e a API backend Spring Boot** (caso ba
 
 ```bash
 npm run self-contained -- up -d
+# ou
+docker compose -f docker/self-contained/docker-compose.yml up -d
 ```
 
 > Este comando usa o arquivo `docker/docker-compose.yml` para subir a aplicação em ambiente de desenvolvimento.
